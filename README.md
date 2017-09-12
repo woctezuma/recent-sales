@@ -20,7 +20,7 @@ Data includes distribution of:
 
 ![average playtime](https://i.imgur.com/NYTMqGH.png)
 
-Most profitable games of all-time:
+## The most profitable games of all-time:
 1.    Grand Theft Auto V
 2.    Counter-Strike: Global Offensive
 3.    Left 4 Dead 2
@@ -31,9 +31,10 @@ Most profitable games of all-time:
 8.    The Elder Scrolls V: Skyrim
 9.    Portal 2
 10.    Call of Duty: Black Ops II
+
 NB: This does not take into account F2P games, as the revenue is based on the game price listed on the Steam store.
 
-Most profitable games, among these released in the past 48 days:
+## The most profitable games, among these released in the past 48 days:
 1.    F1 2017
 2.    Car Mechanic Simulator 2018
 3.    Foxhole
@@ -44,4 +45,5 @@ Most profitable games, among these released in the past 48 days:
  8.   Halcyon 6: Lightspeed Edition
  9.   Quake Champions
  10.   West of Loathing
+ 
 NB: Games with "Enhanced Edition" or "Lightspeed Edition" are likely remastered versions of older games, so they might not be the most profitable in practice. Indeed, their userbase likely consists of owners of the older game, which have been freely upgraded to the new game and artificially inflates the revenue computed on this page.
