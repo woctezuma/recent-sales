@@ -46,7 +46,7 @@ NB: This does not take into account F2P games, as the revenue is based on the ga
  9.   Quake Champions
  10.   West of Loathing
  11. The Legend of Heroes: Trails of Cold Steel
-12. >observer_
+12. \>observer_
 13. Super ComboMan: Smash Edition
 14. Battlestar Galactica Deadlock
 15. Startup Company
