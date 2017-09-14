@@ -29,4 +29,16 @@ def downloadSteamSpyData(json_filename = "steamspy.json"):
     return data
 
 if __name__ == "__main__":
-    data = downloadSteamSpyData()
+    import time
+
+    json_filename_suffixe = "_steamspy.json"
+
+    # Get current day as yyyymmdd format
+    date_format = "%Y%m%d"
+    current_date = time.strftime(date_format)
+
+    # Database filename
+    json_filename = current_date + json_filename_suffixe
+
+    # SteamSpy's data in JSON format
+    data = downloadSteamSpyData(json_filename)
