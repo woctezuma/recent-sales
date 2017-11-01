@@ -1,14 +1,22 @@
 # Objective: download and cache data from SteamSpy
 
 import urllib.request, json
+import pathlib
 
 def downloadSteamSpyData(json_filename = "steamspy.json"):
+
+    # Data folder
+    data_path = "data/"
+    # Reference of the following line: https://stackoverflow.com/a/14364249
+    pathlib.Path(data_path).mkdir(parents=True, exist_ok=True)
+
+    data_filename = data_path + json_filename
 
     # If json_filename is missing, we will attempt to download and cache it from steamspy_url:
     steamspy_url = "http://steamspy.com/api.php?request=all"
 
     try:
-        with open(json_filename, 'r', encoding="utf8") as in_json_file:
+        with open(data_filename, 'r', encoding="utf8") as in_json_file:
             data = json.load(in_json_file)
     except FileNotFoundError:
         print("Downloading and caching data from SteamSpy")
@@ -23,7 +31,7 @@ def downloadSteamSpyData(json_filename = "steamspy.json"):
             # Reference: https://stackoverflow.com/a/8710579/
             jsonString = json.dumps(data)
             # Cache the json data to a local file
-            with open(json_filename, 'w', encoding="utf8") as cache_json_file:
+            with open(data_filename, 'w', encoding="utf8") as cache_json_file:
                 print(jsonString, file=cache_json_file)
 
     return data
