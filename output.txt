@@ -1,103 +1,103 @@
 Most sold units over the first 7 days following their release:
-1	appID: 476620	sold units:  400351	revenue: 24017k€	Call of Duty: WWII
-2	appID: 668630	sold units:  144033	revenue:   229k€	Tricolour Lovestory
-3	appID: 582160	sold units:  142339	revenue:  8538k€	Assassin's Creed Origins
-4	appID: 612880	sold units:  137949	revenue:  8275k€	Wolfenstein II: The New Colossus
-5	appID: 624090	sold units:  126830	revenue:  6340k€	Football Manager 2018
-6	appID: 488790	sold units:   91340	revenue:  5479k€	South Park: The Fractured But Whole
-7	appID: 577800	sold units:   91218	revenue:  5472k€	NBA 2K18
-8	appID: 601430	sold units:   69448	revenue:  4166k€	The Evil Within 2
-9	appID: 614570	sold units:   63830	revenue:  1914k€	Dishonored: Death of the Outsider
-10	appID: 623940	sold units:   45722	revenue:   365k€	HIVESWAP: Act 1
-11	appID: 712050	sold units:   40141	revenue:    63k€	Otaku's Fantasy
-12	appID: 378860	sold units:   33814	revenue:  2028k€	Project CARS 2
-13	appID: 592580	sold units:   29901	revenue:  1793k€	PRO EVOLUTION SOCCER 2018
-14	appID: 675010	sold units:   29632	revenue:   888k€	Spintires: MudRunner
-15	appID: 720280	sold units:   29305	revenue:    46k€	Fox Hime
-16	appID: 610670	sold units:   27417	revenue:    27k€	Alchemyland
-17	appID: 673610	sold units:   24480	revenue:   176k€	Airport CEO
-18	appID: 712840	sold units:   24403	revenue:    38k€	King Exit
-19	appID: 711990	sold units:   19711	revenue:    19k€	Elise the Devil
-20	appID: 686190	sold units:   18757	revenue:    29k€	Killing Time
-21	appID: 633350	sold units:   17813	revenue:    17k€	WtBoy
-22	appID: 251950	sold units:   17011	revenue:   135k€	World War II Online
-23	appID: 665360	sold units:   16956	revenue:    84k€	Comedy Night
-24	appID: 732430	sold units:   16677	revenue:    47k€	Superflight
-25	appID: 627270	sold units:   14013	revenue:   350k€	Injustice 2
-26	appID: 607890	sold units:   13880	revenue:   693k€	Sword Art Online: Hollow Realization Deluxe Edition
-27	appID: 739000	sold units:   13739	revenue:    21k€	Grobda Remix
-28	appID: 577940	sold units:   13603	revenue:   543k€	Killer Instinct
-29	appID: 637100	sold units:   12118	revenue:   484k€	Sonic Forces
-30	appID: 566160	sold units:   11485	revenue:     5k€	Zup! 6
-31	appID: 567640	sold units:   11029	revenue:   330k€	Danganronpa V3: Killing Harmony
-32	appID: 570780	sold units:   10765	revenue:   103k€	(GuJian)
-33	appID: 644760	sold units:   10746	revenue:    33k€	Streetball VR
-34	appID: 570770	sold units:   10576	revenue:   135k€	(GuJian2)
-35	appID: 703700	sold units:    9574	revenue:    90k€	Our End of the World
-36	appID: 635880	sold units:    9166	revenue:     9k€	Chicken Labyrinth Puzzles
-37	appID: 447920	sold units:    8862	revenue:     2k€	Drift (Over) Drive
-38	appID: 487120	sold units:    8807	revenue:   220k€	Citadel: Forged with Fire
-39	appID: 577760	sold units:    8696	revenue:    43k€	Tears of a Dragon
-40	appID: 515220	sold units:    8666	revenue:   519k€	F1 2017
-41	appID: 495140	sold units:    7694	revenue:   153k€	NARUTO: Ultimate Ninja STORM
-42	appID: 581980	sold units:    7559	revenue:    67k€	Candy Machine
-43	appID: 543870	sold units:    7468	revenue:   149k€	NARUTO SHIPPUDEN: Ultimate Ninja STORM 2
-44	appID: 723090	sold units:    7376	revenue:   117k€	Meltys Quest
-45	appID: 645630	sold units:    7297	revenue:   145k€	Car Mechanic Simulator 2018
-46	appID: 681840	sold units:    7186	revenue:    45k€	 Chinese PaladinSword and Fairy 5 Prequel
-47	appID: 700940	sold units:    7049	revenue:    28k€	TangramsVR
-48	appID: 505460	sold units:    6994	revenue:   139k€	Foxhole
-49	appID: 741260	sold units:    6868	revenue:    68k€	Mobile Empire
-50	appID: 683900	sold units:    6864	revenue:   137k€	RollerCoaster Tycoon Classic
+1.	appID: 476620	sold units:  400351	revenue: 24017k€	Call of Duty: WWII
+2.	appID: 668630	sold units:  144033	revenue:   229k€	Tricolour Lovestory
+3.	appID: 582160	sold units:  142339	revenue:  8538k€	Assassin's Creed Origins
+4.	appID: 612880	sold units:  137949	revenue:  8275k€	Wolfenstein II: The New Colossus
+5.	appID: 624090	sold units:  126830	revenue:  6340k€	Football Manager 2018
+6.	appID: 488790	sold units:   91340	revenue:  5479k€	South Park: The Fractured But Whole
+7.	appID: 577800	sold units:   91218	revenue:  5472k€	NBA 2K18
+8.	appID: 601430	sold units:   69448	revenue:  4166k€	The Evil Within 2
+9.	appID: 614570	sold units:   63830	revenue:  1914k€	Dishonored: Death of the Outsider
+10.	appID: 623940	sold units:   45722	revenue:   365k€	HIVESWAP: Act 1
+11.	appID: 712050	sold units:   40141	revenue:    63k€	Otaku's Fantasy
+12.	appID: 378860	sold units:   33814	revenue:  2028k€	Project CARS 2
+13.	appID: 592580	sold units:   29901	revenue:  1793k€	PRO EVOLUTION SOCCER 2018
+14.	appID: 675010	sold units:   29632	revenue:   888k€	Spintires: MudRunner
+15.	appID: 720280	sold units:   29305	revenue:    46k€	Fox Hime
+16.	appID: 673610	sold units:   24480	revenue:   176k€	Airport CEO
+17.	appID: 712840	sold units:   24403	revenue:    38k€	King Exit
+18.	appID: 711990	sold units:   19711	revenue:    19k€	Elise the Devil
+19.	appID: 686190	sold units:   18757	revenue:    29k€	Killing Time
+20.	appID: 732430	sold units:   16677	revenue:    47k€	Superflight
+21.	appID: 627270	sold units:   14013	revenue:   350k€	Injustice 2
+22.	appID: 607890	sold units:   13880	revenue:   693k€	Sword Art Online: Hollow Realization Deluxe Edition
+23.	appID: 739000	sold units:   13739	revenue:    21k€	Grobda Remix
+24.	appID: 577940	sold units:   13603	revenue:   543k€	Killer Instinct
+25.	appID: 637100	sold units:   12118	revenue:   484k€	Sonic Forces
+26.	appID: 566160	sold units:   11485	revenue:     5k€	Zup! 6
+27.	appID: 567640	sold units:   11029	revenue:   330k€	Danganronpa V3: Killing Harmony
+28.	appID: 703700	sold units:    9574	revenue:    90k€	Our End of the World
+29.	appID: 447920	sold units:    8862	revenue:     2k€	Drift (Over) Drive
+30.	appID: 723090	sold units:    7376	revenue:   117k€	Meltys Quest
+31.	appID: 681840	sold units:    7186	revenue:    45k€	 Chinese PaladinSword and Fairy 5 Prequel
+32.	appID: 700940	sold units:    7049	revenue:    28k€	TangramsVR
+33.	appID: 741260	sold units:    6868	revenue:    68k€	Mobile Empire
+34.	appID: 683900	sold units:    6864	revenue:   137k€	RollerCoaster Tycoon Classic
+35.	appID: 414740	sold units:    6385	revenue:   229k€	RAID: World War II
+36.	appID: 621830	sold units:    5907	revenue:   236k€	WRC 7 FIA World Rally Championship
+37.	appID: 656090	sold units:    5601	revenue:     5k€	Salty Fish Go!
+38.	appID: 695630	sold units:    5157	revenue:    21k€	 (Chinese PaladinSword and Fairy)
+39.	appID: 562810	sold units:    4975	revenue:    74k€	MONOPOLY PLUS
+40.	appID: 719430	sold units:    4760	revenue:     7k€	Taima Miko Yuugi
+41.	appID: 558990	sold units:    4720	revenue:    89k€	Opus Magnum
+42.	appID: 617160	sold units:    4347	revenue:    73k€	Home Sweet Home
+43.	appID: 685680	sold units:    4101	revenue:    38k€	Sakura Gamer
+44.	appID: 636570	sold units:    3975	revenue:   214k€	Nights of Azure 2: Bride of the New Moon /
+45.	appID: 722730	sold units:    3896	revenue:    35k€	Cogmind
+46.	appID: 619880	sold units:    3630	revenue:    18k€	ATOMEGA
+47.	appID: 674940	sold units:    3462	revenue:     8k€	Stick Fight: The Game
+48.	appID: 702210	sold units:    3210	revenue:    10k€	Princess Serena ~Raid of Demon Legion~
+49.	appID: 727500	sold units:    3183	revenue:     2k€	WAR DRONES
+50.	appID: 720240	sold units:    3173	revenue:    10k€	Legend of Fainn Dynasty Battles of Beautiful Warlords
 
 Most profitable games over the first 7 days following their release:
-1	appID: 476620	sold units:  400351	revenue: 24017k€	Call of Duty: WWII
-2	appID: 582160	sold units:  142339	revenue:  8538k€	Assassin's Creed Origins
-3	appID: 612880	sold units:  137949	revenue:  8275k€	Wolfenstein II: The New Colossus
-4	appID: 624090	sold units:  126830	revenue:  6340k€	Football Manager 2018
-5	appID: 488790	sold units:   91340	revenue:  5479k€	South Park: The Fractured But Whole
-6	appID: 577800	sold units:   91218	revenue:  5472k€	NBA 2K18
-7	appID: 601430	sold units:   69448	revenue:  4166k€	The Evil Within 2
-8	appID: 378860	sold units:   33814	revenue:  2028k€	Project CARS 2
-9	appID: 614570	sold units:   63830	revenue:  1914k€	Dishonored: Death of the Outsider
-10	appID: 592580	sold units:   29901	revenue:  1793k€	PRO EVOLUTION SOCCER 2018
-11	appID: 675010	sold units:   29632	revenue:   888k€	Spintires: MudRunner
-12	appID: 607890	sold units:   13880	revenue:   693k€	Sword Art Online: Hollow Realization Deluxe Edition
-13	appID: 577940	sold units:   13603	revenue:   543k€	Killer Instinct
-14	appID: 515220	sold units:    8666	revenue:   519k€	F1 2017
-15	appID: 637100	sold units:   12118	revenue:   484k€	Sonic Forces
-16	appID: 623940	sold units:   45722	revenue:   365k€	HIVESWAP: Act 1
-17	appID: 627270	sold units:   14013	revenue:   350k€	Injustice 2
-18	appID: 567640	sold units:   11029	revenue:   330k€	Danganronpa V3: Killing Harmony
-19	appID: 689790	sold units:     667	revenue:   266k€	VEGAS Pro 15 Edit Steam Edition
-20	appID: 621830	sold units:    5907	revenue:   236k€	WRC 7 FIA World Rally Championship
-21	appID: 414740	sold units:    6385	revenue:   229k€	RAID: World War II
-22	appID: 668630	sold units:  144033	revenue:   229k€	Tricolour Lovestory
-23	appID: 487120	sold units:    8807	revenue:   220k€	Citadel: Forged with Fire
-24	appID: 636570	sold units:    3975	revenue:   214k€	Nights of Azure 2: Bride of the New Moon /
-25	appID: 673610	sold units:   24480	revenue:   176k€	Airport CEO
-26	appID: 538680	sold units:    3967	revenue:   158k€	The Legend of Heroes: Trails of Cold Steel
-27	appID: 495140	sold units:    7694	revenue:   153k€	NARUTO: Ultimate Ninja STORM
-28	appID: 543870	sold units:    7468	revenue:   149k€	NARUTO SHIPPUDEN: Ultimate Ninja STORM 2
-29	appID: 645630	sold units:    7297	revenue:   145k€	Car Mechanic Simulator 2018
-30	appID: 505460	sold units:    6994	revenue:   139k€	Foxhole
-31	appID: 683900	sold units:    6864	revenue:   137k€	RollerCoaster Tycoon Classic
-32	appID: 251950	sold units:   17011	revenue:   135k€	World War II Online
-33	appID: 570770	sold units:   10576	revenue:   135k€	(GuJian2)
-34	appID: 723090	sold units:    7376	revenue:   117k€	Meltys Quest
-35	appID: 570780	sold units:   10765	revenue:   103k€	(GuJian)
-36	appID: 607880	sold units:    1822	revenue:    91k€	Accel World VS. Sword Art Online Deluxe Edition
-37	appID: 703700	sold units:    9574	revenue:    90k€	Our End of the World
-38	appID: 558990	sold units:    4720	revenue:    89k€	Opus Magnum
-39	appID: 552440	sold units:    2128	revenue:    85k€	The Talos Principle VR
-40	appID: 665360	sold units:   16956	revenue:    84k€	Comedy Night
-41	appID: 585900	sold units:    2853	revenue:    77k€	Harvest Moon: Light of Hope
-42	appID: 562810	sold units:    4975	revenue:    74k€	MONOPOLY PLUS
-43	appID: 617160	sold units:    4347	revenue:    73k€	Home Sweet Home
-44	appID: 741260	sold units:    6868	revenue:    68k€	Mobile Empire
-45	appID: 581980	sold units:    7559	revenue:    67k€	Candy Machine
-46	appID: 553880	sold units:    2257	revenue:    67k€	Archangel
-47	appID: 535520	sold units:    4358	revenue:    65k€	Nidhogg 2
-48	appID: 712050	sold units:   40141	revenue:    63k€	Otaku's Fantasy
-49	appID: 503580	sold units:    3169	revenue:    63k€	Duck Season
-50	appID: 635200	sold units:    4774	revenue:    57k€	Distrust
+1.	appID: 476620	sold units:  400351	revenue: 24017k€	Call of Duty: WWII
+2.	appID: 582160	sold units:  142339	revenue:  8538k€	Assassin's Creed Origins
+3.	appID: 612880	sold units:  137949	revenue:  8275k€	Wolfenstein II: The New Colossus
+4.	appID: 624090	sold units:  126830	revenue:  6340k€	Football Manager 2018
+5.	appID: 488790	sold units:   91340	revenue:  5479k€	South Park: The Fractured But Whole
+6.	appID: 577800	sold units:   91218	revenue:  5472k€	NBA 2K18
+7.	appID: 601430	sold units:   69448	revenue:  4166k€	The Evil Within 2
+8.	appID: 378860	sold units:   33814	revenue:  2028k€	Project CARS 2
+9.	appID: 614570	sold units:   63830	revenue:  1914k€	Dishonored: Death of the Outsider
+10.	appID: 592580	sold units:   29901	revenue:  1793k€	PRO EVOLUTION SOCCER 2018
+11.	appID: 675010	sold units:   29632	revenue:   888k€	Spintires: MudRunner
+12.	appID: 607890	sold units:   13880	revenue:   693k€	Sword Art Online: Hollow Realization Deluxe Edition
+13.	appID: 577940	sold units:   13603	revenue:   543k€	Killer Instinct
+14.	appID: 637100	sold units:   12118	revenue:   484k€	Sonic Forces
+15.	appID: 623940	sold units:   45722	revenue:   365k€	HIVESWAP: Act 1
+16.	appID: 627270	sold units:   14013	revenue:   350k€	Injustice 2
+17.	appID: 567640	sold units:   11029	revenue:   330k€	Danganronpa V3: Killing Harmony
+18.	appID: 689790	sold units:     667	revenue:   266k€	VEGAS Pro 15 Edit Steam Edition
+19.	appID: 621830	sold units:    5907	revenue:   236k€	WRC 7 FIA World Rally Championship
+20.	appID: 414740	sold units:    6385	revenue:   229k€	RAID: World War II
+21.	appID: 668630	sold units:  144033	revenue:   229k€	Tricolour Lovestory
+22.	appID: 636570	sold units:    3975	revenue:   214k€	Nights of Azure 2: Bride of the New Moon /
+23.	appID: 673610	sold units:   24480	revenue:   176k€	Airport CEO
+24.	appID: 683900	sold units:    6864	revenue:   137k€	RollerCoaster Tycoon Classic
+25.	appID: 723090	sold units:    7376	revenue:   117k€	Meltys Quest
+26.	appID: 607880	sold units:    1822	revenue:    91k€	Accel World VS. Sword Art Online Deluxe Edition
+27.	appID: 703700	sold units:    9574	revenue:    90k€	Our End of the World
+28.	appID: 558990	sold units:    4720	revenue:    89k€	Opus Magnum
+29.	appID: 552440	sold units:    2128	revenue:    85k€	The Talos Principle VR
+30.	appID: 585900	sold units:    2853	revenue:    77k€	Harvest Moon: Light of Hope
+31.	appID: 562810	sold units:    4975	revenue:    74k€	MONOPOLY PLUS
+32.	appID: 617160	sold units:    4347	revenue:    73k€	Home Sweet Home
+33.	appID: 741260	sold units:    6868	revenue:    68k€	Mobile Empire
+34.	appID: 712050	sold units:   40141	revenue:    63k€	Otaku's Fantasy
+35.	appID: 503580	sold units:    3169	revenue:    63k€	Duck Season
+36.	appID: 732430	sold units:   16677	revenue:    47k€	Superflight
+37.	appID: 720280	sold units:   29305	revenue:    46k€	Fox Hime
+38.	appID: 449840	sold units:    2285	revenue:    45k€	Muv-Luv Alternative
+39.	appID: 595420	sold units:    1191	revenue:    45k€	Franchise Hockey Manager 4
+40.	appID: 681840	sold units:    7186	revenue:    45k€	 Chinese PaladinSword and Fairy 5 Prequel
+41.	appID: 672630	sold units:    2285	revenue:    41k€	Academia : School Simulator
+42.	appID: 735280	sold units:    1374	revenue:    39k€	EMERGENCY 20
+43.	appID: 642090	sold units:    2233	revenue:    39k€	Coming Out on Top
+44.	appID: 685680	sold units:    4101	revenue:    38k€	Sakura Gamer
+45.	appID: 712840	sold units:   24403	revenue:    38k€	King Exit
+46.	appID: 215830	sold units:    2482	revenue:    37k€	Closers
+47.	appID: 579210	sold units:    1174	revenue:    35k€	Syndrome VR
+48.	appID: 722730	sold units:    3896	revenue:    35k€	Cogmind
+49.	appID: 517720	sold units:    1365	revenue:    34k€	Epic Tavern
+50.	appID: 391530	sold units:    2886	revenue:    32k€	Blast Out
