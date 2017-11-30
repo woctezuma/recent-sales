@@ -228,7 +228,7 @@ def displayRanking(revenue_D, delta_in_days, num_ranks_to_show = 15):
         appID = ranking_by_sold_units[i]
         try:
             print(str(i + 1)
-                  + "\tappID: " + appID
+                  + ".\tappID: " + appID
                   + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
                   + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
                   + revenue_D[appID][-1])
@@ -240,7 +240,7 @@ def displayRanking(revenue_D, delta_in_days, num_ranks_to_show = 15):
         appID = ranking_by_revenue[i]
         try:
             print(str(i + 1)
-                  + "\tappID: " + appID
+                  + ".\tappID: " + appID
                   + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
                   + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
                   + revenue_D[appID][-1])
