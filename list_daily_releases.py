@@ -266,6 +266,14 @@ if __name__ == "__main__":
     delta_in_days = 7
 
     date_days_ago = datetime.datetime.strptime(current_date, date_format) - datetime.timedelta(time_window_duration+delta_in_days)
+    # Any date prior to the following date is not reliable: games released in August will appear to be released
+    # on 20170912 because I started to regularly sample from SteamSpy only then.
+    hard_date_threshold_str = '20170914'
+    hard_date_threshold = datetime.datetime.strptime(hard_date_threshold_str, date_format)
+    check_delta = hard_date_threshold - date_days_ago
+    if check_delta.days > 0:
+        date_days_ago = hard_date_threshold
+    # Conversion to string
     date_days_ago_str = date_days_ago.strftime(date_format)
 
     D = filterDictionary(D, date_days_ago_str, current_date)
