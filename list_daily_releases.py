@@ -239,8 +239,8 @@ if __name__ == "__main__":
         data = loadJsonData(current_date)
 
     # TODO, sort this out...
-    ranking_by_sold_units = sorted(revenue_D.keys(), key=lambda x: D[x][0], reverse=True)
-    ranking_by_revenue = sorted(revenue_D.keys(), key=lambda x: D[x][1], reverse=True)
+    ranking_by_sold_units = sorted(revenue_D.keys(), key=lambda x: revenue_D[x][0], reverse=True)
+    ranking_by_revenue = sorted(revenue_D.keys(), key=lambda x: revenue_D[x][1], reverse=True)
 
     print("\nMost sold units over the first " + str(delta_in_days) + " days following their release:")
     for i in range(num_ranks_to_show):
