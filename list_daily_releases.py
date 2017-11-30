@@ -243,17 +243,17 @@ if __name__ == "__main__":
     ranking_by_revenue = sorted(revenue_D.keys(), key=lambda x: D[x][1], reverse=True)
 
     print("\nMost sold units over the first " + str(delta_in_days) + " days following their release:")
-    for i in range(1, num_ranks_to_show+1):
+    for i in range(num_ranks_to_show):
         appID = ranking_by_sold_units[i]
         try:
-            print(str(i) + "\t" + data[appID]['name'] +"\tsold units: " + str(revenue_D[appID][0]) +"\trevenue: " + str(revenue_D[appID][1]))
+            print(str(i+1) + "\t" + data[appID]['name'] +"\tsold units: " + str(revenue_D[appID][0]) +"\trevenue: " + str(revenue_D[appID][1]))
         except KeyError:
             print("Missing data for " + appID)
 
     print("\nMost profitable games over the first " + str(delta_in_days) + " days following their release:")
-    for i in range(1, num_ranks_to_show+1):
+    for i in range(num_ranks_to_show):
         appID = ranking_by_revenue[i]
         try:
-            print(str(i) + "\t" + data[appID]['name'] +"\tsold units: " + str(revenue_D[appID][0]) +"\trevenue: " + str(revenue_D[appID][1]))
+            print(str(i+1) + "\t" + data[appID]['name'] +"\tsold units: " + str(revenue_D[appID][0]) +"\trevenue: " + str(revenue_D[appID][1]))
         except KeyError:
             print("Missing data for " + appID)
