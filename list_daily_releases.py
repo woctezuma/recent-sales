@@ -222,7 +222,7 @@ if __name__ == "__main__":
 
     D = filterDictionary(D, date_days_ago_str, current_date)
 
-    late_D = createAppidLateDictionary(D)
+    late_D = createAppidLateDictionary(D, delta_in_days)
 
     revenue_D = computeRevenueDictionary(D, late_D)
 
