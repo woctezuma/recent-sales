@@ -201,6 +201,8 @@ if __name__ == "__main__":
     import time
     import datetime
 
+    from download_json import downloadSteamSpyData
+
     dict_filename = "dict_appid.txt"
 
     D = createAppidDictionary(dict_filename)
@@ -224,4 +226,34 @@ if __name__ == "__main__":
 
     revenue_D = computeRevenueDictionary(D, late_D)
 
-    print(revenue_D)
+    # Show rankings of most sold and most profitable games
+
+    num_ranks_to_show = 15
+
+    # Today's data to get the game name corresponding to each appID
+    data = loadJsonData(current_date)
+    if len(data) == 0:
+        json_filename_suffixe = "_steamspy.json"
+        json_filename = current_date + json_filename_suffixe
+        data = downloadSteamSpyData(json_filename)
+        data = loadJsonData(current_date)
+
+    # TODO, sort this out...
+    ranking_by_sold_units = sorted(revenue_D.keys(), key=lambda x: D[x][0], reverse=True)
+    ranking_by_revenue = sorted(revenue_D.keys(), key=lambda x: D[x][1], reverse=True)
+
+    print("\nMost sold units over the first " + str(delta_in_days) + " days following their release:")
+    for i in range(1, num_ranks_to_show+1):
+        appID = ranking_by_sold_units[i]
+        try:
+            print(str(i) + "\t" + data[appID]['name'] +"\tsold units: " + str(revenue_D[appID][0]) +"\trevenue: " + str(revenue_D[appID][1]))
+        except KeyError:
+            print("Missing data for " + appID)
+
+    print("\nMost profitable games over the first " + str(delta_in_days) + " days following their release:")
+    for i in range(1, num_ranks_to_show+1):
+        appID = ranking_by_revenue[i]
+        try:
+            print(str(i) + "\t" + data[appID]['name'] +"\tsold units: " + str(revenue_D[appID][0]) +"\trevenue: " + str(revenue_D[appID][1]))
+        except KeyError:
+            print("Missing data for " + appID)
