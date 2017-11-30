@@ -87,7 +87,7 @@ def createAppidDictionary(dict_filename, data_path ="data/"):
                 D[appid] = [release_day, num_owners, price_in_cents, game_name]
 
         # First line of the text file containing the output dictionary
-        leading_comment = "# Dictionary with key=appid and value=list of release day, #owners, price in cents"
+        leading_comment = "# Dictionary with key=appid and value=list of release day, #owners, price in cents, game name"
 
         # Save the dictionary to a text file
         with open(dict_filename, 'w', encoding="utf8") as outfile:
