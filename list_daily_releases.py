@@ -54,6 +54,7 @@ def createAppidDictionary(dict_filename, data_path ="data/"):
         sorted_files = sorted(only_files)
 
         D = dict()
+        encountered_appID_so_far = []
 
         # Loop over days (one file corresponds to one day)
         for data_filename in sorted_files:
@@ -66,15 +67,20 @@ def createAppidDictionary(dict_filename, data_path ="data/"):
             data = loadJsonData(data_filename)
 
             # Compute the difference between the two databases
-            added_appids = set(data.keys()) - set(D.keys())
+            added_appids = set(data.keys()) - set(encountered_appID_so_far)
 
             num_games = len(added_appids)
             print("#games = %d" % num_games)
 
             for appid in added_appids:
-                num_owners = int(data[appid]['owners'])
+                encountered_appID_so_far.append(appid)
 
-                price_in_cents = int(data[appid]['price'])
+                num_owners = int(data[appid]['owners'])
+                try:
+                    price_in_cents = int(data[appid]['price'])
+                except TypeError:
+                    print( data[appid]['name'] + " has no set price.")
+                    continue
 
                 D[appid] = [release_day, num_owners, price_in_cents]
 
