@@ -37,7 +37,7 @@ def listFiles(folder_path):
     return only_files
 
 def createAppidDictionary(dict_filename, data_path ="data/"):
-    # Create a dictionary: appid -> [ release day, number of owners on release day, price ]
+    # Create a dictionary: appid -> [ release day, number of owners on release day, price, name of the game ]
 
     try:
         # Load the appID dictionary
@@ -82,7 +82,9 @@ def createAppidDictionary(dict_filename, data_path ="data/"):
                     print( data[appid]['name'] + " has no set price.")
                     continue
 
-                D[appid] = [release_day, num_owners, price_in_cents]
+                game_name = data[appid]['name']
+
+                D[appid] = [release_day, num_owners, price_in_cents, game_name]
 
         # First line of the text file containing the output dictionary
         leading_comment = "# Dictionary with key=appid and value=list of release day, #owners, price in cents"
@@ -116,7 +118,7 @@ def filterDictionary(D, start_date_str, end_date_str, date_format = "%Y%m%d"):
     return filtered_D
 
 def reverseDictionary(D):
-    # Input dictionary: appid -> [ release day, number of owners on release day, price ]
+    # Input dictionary: appid -> [ release day, number of owners on release day, price, name of the game ]
     # Output dictionary: release day -> [ list of appID released on that day ]
 
     reversed_D = dict()
@@ -144,7 +146,7 @@ def findLaterDay(current_day_str, delta_in_days, date_format = "%Y%m%d"):
     return later_day_str
 
 def createAppidLateDictionary(D, delta_in_days = 7, data_path ="data/"):
-    # Input dictionary: appid -> [ release day, number of owners on release day, price ]
+    # Input dictionary: appid -> [ release day, number of owners on release day, price, name of the game ]
     # Input number of days elapsed before checking the new number of owners
     #
     # Output dictionary: appid -> [ the date which is delta days after release,
@@ -175,7 +177,8 @@ def createAppidLateDictionary(D, delta_in_days = 7, data_path ="data/"):
 def computeRevenueDictionary(D, late_D, remove_F2P = False):
     # Given two dictionaries obtained on different days, return a dictionary: appid -> a list of
     # - the number of people who purchased the game between the two snapshots,
-    # - and then the revenue (price times the #units sold).
+    # - the revenue (price times the #units sold),
+    # - and then the name of the game.
 
     original_appID = set(D.keys())
     late_appID = set(late_D.keys())
@@ -193,7 +196,9 @@ def computeRevenueDictionary(D, late_D, remove_F2P = False):
         average_price = (previous_price+new_price)/2.0
         revenue = average_price * num_units_sold
 
-        revenue_D[appID] = [num_units_sold, revenue]
+        game_name = D[appID][3]
+
+        revenue_D[appID] = [num_units_sold, revenue, game_name]
 
     if remove_F2P:
         for appID in list(filter(lambda x: revenue_D[x][1] <= 0, revenue_D.keys())):
@@ -201,11 +206,39 @@ def computeRevenueDictionary(D, late_D, remove_F2P = False):
 
     return revenue_D
 
+def displayRanking(revenue_D, delta_in_days, num_ranks_to_show = 15):
+    # Show rankings of most sold and most profitable games
+
+    ranking_by_sold_units = sorted(revenue_D.keys(), key=lambda x: revenue_D[x][0], reverse=True)
+    ranking_by_revenue = sorted(revenue_D.keys(), key=lambda x: revenue_D[x][1], reverse=True)
+
+    print("\nMost sold units over the first " + str(delta_in_days) + " days following their release:")
+    for i in range(num_ranks_to_show):
+        appID = ranking_by_sold_units[i]
+        try:
+            print(str(i + 1)
+                  + "\tappID: " + appID
+                  + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
+                  + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
+                  + revenue_D[appID][2])
+        except KeyError:
+            print("Missing data for " + appID)
+
+    print("\nMost profitable games over the first " + str(delta_in_days) + " days following their release:")
+    for i in range(num_ranks_to_show):
+        appID = ranking_by_revenue[i]
+        try:
+            print(str(i + 1)
+                  + "\tappID: " + appID
+                  + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
+                  + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
+                  + revenue_D[appID][2])
+        except KeyError:
+            print("Missing data for " + appID)
+
 if __name__ == "__main__":
     import time
     import datetime
-
-    from download_json import downloadSteamSpyData
 
     dict_filename = "dict_appid.txt"
 
@@ -231,41 +264,4 @@ if __name__ == "__main__":
     remove_F2P = True
     revenue_D = computeRevenueDictionary(D, late_D, remove_F2P)
 
-    # Show rankings of most sold and most profitable games
-
-    num_ranks_to_show = 15
-
-    # Today's data to get the game name corresponding to each appID
-    data = loadJsonData(current_date)
-    if len(data) == 0:
-        json_filename_suffixe = "_steamspy.json"
-        json_filename = current_date + json_filename_suffixe
-        data = downloadSteamSpyData(json_filename)
-        data = loadJsonData(current_date)
-
-    ranking_by_sold_units = sorted(revenue_D.keys(), key=lambda x: revenue_D[x][0], reverse=True)
-    ranking_by_revenue = sorted(revenue_D.keys(), key=lambda x: revenue_D[x][1], reverse=True)
-
-    print("\nMost sold units over the first " + str(delta_in_days) + " days following their release:")
-    for i in range(num_ranks_to_show):
-        appID = ranking_by_sold_units[i]
-        try:
-            print(str(i + 1)
-                  + "\tappID: " + appID
-                  + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
-                  + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
-                  + data[appID]['name'])
-        except KeyError:
-            print("Missing data for " + appID)
-
-    print("\nMost profitable games over the first " + str(delta_in_days) + " days following their release:")
-    for i in range(num_ranks_to_show):
-        appID = ranking_by_revenue[i]
-        try:
-            print(str(i + 1)
-                  + "\tappID: " + appID
-                  + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
-                  + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
-                  + data[appID]['name'])
-        except KeyError:
-            print("Missing data for " + appID)
+    displayRanking(revenue_D, delta_in_days)
