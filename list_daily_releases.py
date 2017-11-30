@@ -260,10 +260,10 @@ if __name__ == "__main__":
     current_date = time.strftime(date_format)
 
     # We consider all the games released on a time window of 30 days
-    time_window_duration = 60
+    time_window_duration = 90
 
     # We will compute revenue earned during the first 10 days of release
-    delta_in_days = 7
+    delta_in_days = 14
 
     date_days_ago = datetime.datetime.strptime(current_date, date_format) - datetime.timedelta(time_window_duration+delta_in_days)
     date_days_ago_str = date_days_ago.strftime(date_format)
