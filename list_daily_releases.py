@@ -263,7 +263,7 @@ if __name__ == "__main__":
     time_window_duration = 90
 
     # We will compute revenue earned during the first 10 days of release
-    delta_in_days = 14
+    delta_in_days = 7
 
     date_days_ago = datetime.datetime.strptime(current_date, date_format) - datetime.timedelta(time_window_duration+delta_in_days)
     date_days_ago_str = date_days_ago.strftime(date_format)
@@ -275,4 +275,5 @@ if __name__ == "__main__":
     remove_F2P = True
     revenue_D = computeRevenueDictionary(D, late_D, remove_F2P)
 
-    displayRanking(revenue_D, delta_in_days)
+    num_ranks_to_show = 50
+    displayRanking(revenue_D, delta_in_days, 50)
