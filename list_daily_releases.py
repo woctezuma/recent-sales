@@ -123,12 +123,22 @@ def reverseDictionary(D):
 
     reversed_D = dict()
 
+    encountered_game_names_so_far = []
+
     for appID in D.keys():
         date_str = D[appID][0]
-        try:
-            reversed_D[date_str].append(appID)
-        except KeyError:
-            reversed_D[date_str] = [ appID ]
+
+        # Remove duplicate entries (two different appID but actually the same game: "Call of Duty: WWII" is both "476600" and "476620"
+        game_name = D[appID][-1]
+
+        if game_name not in encountered_game_names_so_far:
+            encountered_game_names_so_far.append(game_name)
+            try:
+                reversed_D[date_str].append(appID)
+            except KeyError:
+                reversed_D[date_str] = [ appID ]
+        else:
+            print("Duplicate " + game_name + " removed.")
 
     return reversed_D
 
@@ -196,10 +206,11 @@ def computeRevenueDictionary(D, late_D, remove_F2P = False):
         average_price = (previous_price+new_price)/2.0
         revenue = average_price * num_units_sold
 
-        game_name = D[appID][3]
+        game_name = D[appID][-1]
 
         revenue_D[appID] = [num_units_sold, revenue, game_name]
 
+    # Remove F2P games
     if remove_F2P:
         for appID in list(filter(lambda x: revenue_D[x][1] <= 0, revenue_D.keys())):
             revenue_D.pop(appID)
@@ -220,7 +231,7 @@ def displayRanking(revenue_D, delta_in_days, num_ranks_to_show = 15):
                   + "\tappID: " + appID
                   + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
                   + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
-                  + revenue_D[appID][2])
+                  + revenue_D[appID][-1])
         except KeyError:
             print("Missing data for " + appID)
 
@@ -232,7 +243,7 @@ def displayRanking(revenue_D, delta_in_days, num_ranks_to_show = 15):
                   + "\tappID: " + appID
                   + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
                   + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
-                  + revenue_D[appID][2])
+                  + revenue_D[appID][-1])
         except KeyError:
             print("Missing data for " + appID)
 
