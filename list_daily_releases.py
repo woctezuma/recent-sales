@@ -224,10 +224,10 @@ def displayRanking(revenue_D, delta_in_days, num_ranks_to_show = 15):
     ranking_by_revenue = sorted(revenue_D.keys(), key=lambda x: revenue_D[x][1], reverse=True)
 
     print("\nMost sold units over the first " + str(delta_in_days) + " days following their release:")
-    for i in range(num_ranks_to_show):
+    for i in range(min(num_ranks_to_show, len(ranking_by_sold_units))):
         appID = ranking_by_sold_units[i]
         try:
-            print(str(i + 1)
+            print('{:02}'.format(i + 1)
                   + ".\tappID: " + appID
                   + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
                   + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
@@ -236,10 +236,10 @@ def displayRanking(revenue_D, delta_in_days, num_ranks_to_show = 15):
             print("Missing data for " + appID)
 
     print("\nMost profitable games over the first " + str(delta_in_days) + " days following their release:")
-    for i in range(num_ranks_to_show):
+    for i in range(min(num_ranks_to_show, len(ranking_by_revenue))):
         appID = ranking_by_revenue[i]
         try:
-            print(str(i + 1)
+            print('{:02}'.format(i + 1)
                   + ".\tappID: " + appID
                   + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
                   + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
