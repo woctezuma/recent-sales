@@ -1,4 +1,5 @@
 data/201*_steamspy.json
+data/README.md
 .idea/
 __pycache__/
 steamSpy.bat
