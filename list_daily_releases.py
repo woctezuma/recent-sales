@@ -2,6 +2,7 @@
 
 import pathlib
 
+
 def loadJsonData(json_filename):
     # Load the content of a JSON data file
 
@@ -33,7 +34,7 @@ def listFiles(folder_path):
     # List all the files found in a directory
 
     # Reference: https://stackoverflow.com/a/41447012
-    only_files = [str(f) for f in pathlib.Path(folder_path).iterdir() if f.is_file()]
+    only_files = [f.parts[-1] for f in pathlib.Path(folder_path).glob('*.json')]
 
     return only_files
 
