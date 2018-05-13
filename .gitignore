@@ -1,6 +1,6 @@
-data/201*_steamspy.json
-data/README.md
+data/
 .idea/
 __pycache__/
 steamSpy.bat
 dict_appid.txt
+venv/
