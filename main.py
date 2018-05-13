@@ -3,10 +3,6 @@
 import datetime
 import time
 
-import matplotlib
-
-matplotlib.use('Agg')
-
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -73,6 +69,16 @@ def get_new_releases(data, previous_data):
     return added_data
 
 
+def get_mid_of_interval(interval_as_str):
+    # Code copied from get_mid_of_interval() in compute_stats.py in hidden-gems repository.
+    interval_as_str_formatted = [s.replace(',', '') for s in interval_as_str.split('..')]
+    lower_bound = float(interval_as_str_formatted[0])
+    upper_bound = float(interval_as_str_formatted[1])
+    mid_value = (lower_bound + upper_bound) / 2
+
+    return mid_value
+
+
 def prepare_display(database, dict_parameters):
     # Read parameters from dictionary
     feature_title = dict_parameters['feature_title']
@@ -89,16 +95,17 @@ def prepare_display(database, dict_parameters):
     for appid in database.keys():
         feature_value = database[appid][feature_name]
         try:
-            formatted_feature_value = transform(feature_value)
-            if feature_title == "Revenue":
-                formatted_feature_value *= float(database[appid]["price"]) / 100
-            if feature_title == "Cumulated playtime":
-                formatted_feature_value *= float(database[appid]["players_forever"])
-                formatted_feature_value = int(formatted_feature_value)
-            x.append(formatted_feature_value)
-            dico[appid] = formatted_feature_value
-        except:
-            continue
+            feature_value = float(feature_value)
+        except ValueError:
+            feature_value = float(get_mid_of_interval(feature_value))
+        formatted_feature_value = transform(feature_value)
+        if feature_title == "Revenue":
+            formatted_feature_value *= float(database[appid]["price"]) / 100
+        if feature_title == "Cumulated playtime":
+            formatted_feature_value *= float(database[appid]["players_forever"])
+            formatted_feature_value = int(formatted_feature_value)
+        x.append(formatted_feature_value)
+        dico[appid] = formatted_feature_value
 
     sorted_appids = sorted(dico, key=lambda x: dico[x], reverse=True)
     counter = 1
@@ -197,7 +204,7 @@ def display_sales(x, dict_parameters, title_suffixe):
     fig, ax = plt.subplots()
 
     # the histogram of the data
-    n, bins, patches = ax.hist(x, bin_list, normed=1, facecolor='g', alpha=0.75)
+    n, bins, patches = ax.hist(x, bin_list, normed=True, facecolor='g', alpha=0.75)
     print(sum(n))
 
     plt.xlabel(xtitle)
