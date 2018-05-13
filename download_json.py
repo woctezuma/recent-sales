@@ -1,10 +1,11 @@
 # Objective: download and cache data from SteamSpy
 
-import urllib.request, json
+import json
 import pathlib
+import urllib.request
 
-def downloadSteamSpyData(json_filename = "steamspy.json"):
 
+def downloadSteamSpyData(json_filename="steamspy.json"):
     # Data folder
     data_path = "data/"
     # Reference of the following line: https://stackoverflow.com/a/14364249
@@ -20,10 +21,12 @@ def downloadSteamSpyData(json_filename = "steamspy.json"):
             data = json.load(in_json_file)
     except FileNotFoundError:
         print("Downloading and caching data from SteamSpy")
+
         # Trick to download the JSON file directly from SteamSpy, in case the file does not exist locally yet
         # Reference: https://stackoverflow.com/a/31758803/
         class AppURLopener(urllib.request.FancyURLopener):
             version = "Mozilla/5.0"
+
         opener = AppURLopener()
         with opener.open(steamspy_url) as response:
             data = json.load(response)
@@ -36,7 +39,8 @@ def downloadSteamSpyData(json_filename = "steamspy.json"):
 
     return data
 
-if __name__ == "__main__":
+
+def main():
     import time
 
     json_filename_suffixe = "_steamspy.json"
@@ -50,3 +54,9 @@ if __name__ == "__main__":
 
     # SteamSpy's data in JSON format
     data = downloadSteamSpyData(json_filename)
+
+    return True
+
+
+if __name__ == "__main__":
+    main()

@@ -8,7 +8,7 @@ def loadJsonData(json_filename):
     # Data folder
     data_path = "data/"
 
-    if not(json_filename.endswith(".json")):
+    if not (json_filename.endswith(".json")):
         # Assume the filename is wrong and the user provided only the date instead
         date = json_filename
 
@@ -26,6 +26,7 @@ def loadJsonData(json_filename):
 
     return data
 
+
 def listFiles(folder_path):
     # List all the files found in a directory
 
@@ -36,7 +37,8 @@ def listFiles(folder_path):
 
     return only_files
 
-def createAppidDictionary(dict_filename, data_path ="data/"):
+
+def createAppidDictionary(dict_filename, data_path="data/"):
     # Create a dictionary: appid -> [ release day, number of owners on release day, price, name of the game ]
 
     try:
@@ -79,7 +81,7 @@ def createAppidDictionary(dict_filename, data_path ="data/"):
                 try:
                     price_in_cents = int(data[appid]['price'])
                 except TypeError:
-                    print( data[appid]['name'] + " has no set price.")
+                    print(data[appid]['name'] + " has no set price.")
                     continue
 
                 game_name = data[appid]['name']
@@ -96,7 +98,8 @@ def createAppidDictionary(dict_filename, data_path ="data/"):
 
     return D
 
-def filterDictionary(D, start_date_str, end_date_str, date_format = "%Y%m%d"):
+
+def filterDictionary(D, start_date_str, end_date_str, date_format="%Y%m%d"):
     # Keep every appID which was released in the time window [start_date, end_date] ; remove all the other appIDs
 
     import datetime
@@ -112,10 +115,11 @@ def filterDictionary(D, start_date_str, end_date_str, date_format = "%Y%m%d"):
 
         delta_start = date - start_date
         delta_end = end_date - date
-        if (delta_start.days>=0) and (delta_end.days>=0):
+        if (delta_start.days >= 0) and (delta_end.days >= 0):
             filtered_D[appID] = D[appID]
 
     return filtered_D
+
 
 def reverseDictionary(D):
     # Input dictionary: appid -> [ release day, number of owners on release day, price, name of the game ]
@@ -136,13 +140,14 @@ def reverseDictionary(D):
             try:
                 reversed_D[date_str].append(appID)
             except KeyError:
-                reversed_D[date_str] = [ appID ]
+                reversed_D[date_str] = [appID]
         else:
             print("Duplicate " + game_name + " removed.")
 
     return reversed_D
 
-def findLaterDay(current_day_str, delta_in_days, date_format = "%Y%m%d"):
+
+def findLaterDay(current_day_str, delta_in_days, date_format="%Y%m%d"):
     # Compute the day coresponding to the current day plus a number delta of days
 
     import datetime
@@ -155,7 +160,8 @@ def findLaterDay(current_day_str, delta_in_days, date_format = "%Y%m%d"):
 
     return later_day_str
 
-def createAppidLateDictionary(D, delta_in_days = 7, data_path ="data/"):
+
+def createAppidLateDictionary(D, delta_in_days=7, data_path="data/"):
     # Input dictionary: appid -> [ release day, number of owners on release day, price, name of the game ]
     # Input number of days elapsed before checking the new number of owners
     #
@@ -174,8 +180,8 @@ def createAppidLateDictionary(D, delta_in_days = 7, data_path ="data/"):
 
         for appID in reversed_D[day]:
             try:
-                num_owners = int( data[appID]['owners'] )
-                price_in_cents = int( data[appID]['price'] )
+                num_owners = int(data[appID]['owners'])
+                price_in_cents = int(data[appID]['price'])
             except KeyError:
                 continue
 
@@ -184,7 +190,7 @@ def createAppidLateDictionary(D, delta_in_days = 7, data_path ="data/"):
     return late_D
 
 
-def computeRevenueDictionary(D, late_D, remove_F2P = False):
+def computeRevenueDictionary(D, late_D, remove_F2P=False):
     # Given two dictionaries obtained on different days, return a dictionary: appid -> a list of
     # - the number of people who purchased the game between the two snapshots,
     # - the revenue (price times the #units sold),
@@ -192,7 +198,7 @@ def computeRevenueDictionary(D, late_D, remove_F2P = False):
 
     original_appID = set(D.keys())
     late_appID = set(late_D.keys())
-    consistent_appID = original_appID.intersection( late_appID )
+    consistent_appID = original_appID.intersection(late_appID)
 
     revenue_D = dict()
 
@@ -203,7 +209,7 @@ def computeRevenueDictionary(D, late_D, remove_F2P = False):
 
         previous_price = int(D[appID][2])
         new_price = int(late_D[appID][2])
-        average_price = (previous_price+new_price)/2.0
+        average_price = (previous_price + new_price) / 2.0
         revenue = average_price * num_units_sold
 
         game_name = D[appID][-1]
@@ -217,7 +223,8 @@ def computeRevenueDictionary(D, late_D, remove_F2P = False):
 
     return revenue_D
 
-def displayRanking(revenue_D, delta_in_days, num_ranks_to_show = 15):
+
+def displayRanking(revenue_D, delta_in_days, num_ranks_to_show=15):
     # Show rankings of most sold and most profitable games
 
     ranking_by_sold_units = sorted(revenue_D.keys(), key=lambda x: revenue_D[x][0], reverse=True)
@@ -247,7 +254,8 @@ def displayRanking(revenue_D, delta_in_days, num_ranks_to_show = 15):
         except KeyError:
             print("Missing data for " + appID)
 
-if __name__ == "__main__":
+
+def main():
     import time
     import datetime
 
@@ -265,7 +273,8 @@ if __name__ == "__main__":
     # We will compute revenue earned during the first 10 days of release
     delta_in_days = 7
 
-    date_days_ago = datetime.datetime.strptime(current_date, date_format) - datetime.timedelta(time_window_duration+delta_in_days)
+    date_days_ago = datetime.datetime.strptime(current_date, date_format) - datetime.timedelta(
+        time_window_duration + delta_in_days)
     # Any date prior to the following date is not reliable: games released in August will appear to be released
     # on 20170912 because I started to regularly sample from SteamSpy only then.
     hard_date_threshold_str = '20170914'
@@ -285,3 +294,9 @@ if __name__ == "__main__":
 
     num_ranks_to_show = 50
     displayRanking(revenue_D, delta_in_days, 50)
+
+    return True
+
+
+if __name__ == "__main__":
+    main()
