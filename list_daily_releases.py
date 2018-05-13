@@ -271,17 +271,14 @@ def displayRanking(revenue_D, delta_in_days, num_ranks_to_show=15):
             print("Missing data for " + appID)
 
 
-def main():
-    import time
+def main(chosen_date='20180101'):
     import datetime
 
     dict_filename = "dict_appid.txt"
 
     D = createAppidDictionary(dict_filename)
 
-    # Get current day as yyyymmdd format
     date_format = "%Y%m%d"
-    current_date = time.strftime(date_format)
 
     # We consider all the games released on a time window of 30 days
     time_window_duration = 90
@@ -289,7 +286,7 @@ def main():
     # We will compute revenue earned during the first 10 days of release
     delta_in_days = 7
 
-    date_days_ago = datetime.datetime.strptime(current_date, date_format) - datetime.timedelta(
+    date_days_ago = datetime.datetime.strptime(chosen_date, date_format) - datetime.timedelta(
         time_window_duration + delta_in_days)
     # Any date prior to the following date is not reliable: games released in August will appear to be released
     # on 20170912 because I started to regularly sample from SteamSpy only then.
@@ -301,7 +298,7 @@ def main():
     # Conversion to string
     date_days_ago_str = date_days_ago.strftime(date_format)
 
-    D = filterDictionary(D, date_days_ago_str, current_date)
+    D = filterDictionary(D, date_days_ago_str, chosen_date)
 
     late_D = createAppidLateDictionary(D, delta_in_days)
 
