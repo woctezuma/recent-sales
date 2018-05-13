@@ -39,7 +39,7 @@ def get_previous_data(date_format='%Y%m%d', previous_date='20170726'):
     previous_data = downloadSteamSpyData(previous_json_filename)
 
     num_games = len(previous_data.keys())
-    print("#games = %d" % num_games)
+    print("[previously] #games = %d" % num_games)
 
     # Get current day as yyyymmdd format
     current_date = time.strftime(date_format)
@@ -52,7 +52,7 @@ def get_previous_data(date_format='%Y%m%d', previous_date='20170726'):
     return previous_data, delta
 
 
-def get_new_releases(data, previous_data):
+def get_new_releases(data, previous_data, verbose=False):
     # Compute the difference between the two databases
 
     added_appids = set(data.keys()) - set(previous_data.keys())
@@ -60,7 +60,8 @@ def get_new_releases(data, previous_data):
     added_data = dict()
     for appid in added_appids:
         added_data[appid] = data[appid]
-    print(added_data)
+    if verbose:
+        print(added_data)
 
     num_games = len(added_data.keys())
     print("[new releases] #games = %d" % num_games)
@@ -96,11 +97,12 @@ def prepare_display(database, dict_parameters):
         x.append(formatted_feature_value)
         dico[appid] = formatted_feature_value
 
+    print('\nRanking')
     sorted_appids = sorted(dico, key=lambda x: dico[x], reverse=True)
     counter = 1
     for k in sorted_appids[:10]:
-        # print(k + "\t" + database[k]["name"] + "\t" + str(dico[k]))
-        print(database[k]["name"])
+        sentence = '{:3}. appID = {:7}\t' + feature_name + ' ={:12.0f}\tname = {}'
+        print(sentence.format(counter, k, dico[k], database[k]["name"]))
         counter += 1
 
     return x
@@ -200,7 +202,7 @@ def display_sales(x, dict_parameters, title_suffixe, no_display_available):
 
     # the histogram of the data
     n, bins, patches = ax.hist(x, bin_list, density=True, facecolor='g', alpha=0.75)
-    print(sum(n))
+    print('\nIntegral = {}'.format(sum(n)))
 
     plt.xlabel(xtitle)
     plt.ylabel('Probability')
