@@ -212,15 +212,16 @@ def display_sales(x, dict_parameters, title_suffixe):
     plt.grid(which='minor', alpha=0.2)
     plt.grid(which='major', alpha=0.5)
 
-    try:
-        plt.show()
-    except _tkinter.TclError:
-        print('There is no display on this machine. You can still write to disk with matplotlib.use(\'Agg\')')
+    plt.show()
 
     return
 
 
-def main():
+def main(no_display_available=False):
+    if no_display_available:
+        import matplotlib
+        matplotlib.use('Agg')
+
     only_use_recent_releases = True
 
     date_format = '%Y%m%d'

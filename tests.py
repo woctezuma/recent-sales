@@ -20,7 +20,7 @@ class TestListDailyReleasesMethods(unittest.TestCase):
 class TestMainMethods(unittest.TestCase):
 
     def test_main(self):
-        self.assertTrue(main.main())
+        self.assertTrue(main.main(no_display_available=True))
 
 
 if __name__ == '__main__':
