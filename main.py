@@ -2,6 +2,7 @@
 
 import datetime
 import time
+from tkinter import TclError
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -221,7 +222,10 @@ def display_sales(x, dict_parameters, title_suffixe):
     plt.grid(which='minor', alpha=0.2)
     plt.grid(which='major', alpha=0.5)
 
-    plt.show()
+    try:
+        plt.show()
+    except TclError:
+        print('There is no display on this machine. You can still write to disk with matplotlib.use(\'Agg\')')
 
     return
 
