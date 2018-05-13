@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from download_json import downloadSteamSpyData
+from list_daily_releases import get_mid_of_interval
 
 
 def get_json_filename_suffixe():
@@ -68,16 +69,6 @@ def get_new_releases(data, previous_data):
     print("[new releases] #games = %d" % num_games)
 
     return added_data
-
-
-def get_mid_of_interval(interval_as_str):
-    # Code copied from get_mid_of_interval() in compute_stats.py in hidden-gems repository.
-    interval_as_str_formatted = [s.replace(',', '') for s in interval_as_str.split('..')]
-    lower_bound = float(interval_as_str_formatted[0])
-    upper_bound = float(interval_as_str_formatted[1])
-    mid_value = (lower_bound + upper_bound) / 2
-
-    return mid_value
 
 
 def prepare_display(database, dict_parameters):

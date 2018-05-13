@@ -1,5 +1,7 @@
 # Objective: list game releases ; for each game, analyze the sales during the first week after release
 
+import pathlib
+
 def loadJsonData(json_filename):
     # Load the content of a JSON data file
 
@@ -30,12 +32,20 @@ def loadJsonData(json_filename):
 def listFiles(folder_path):
     # List all the files found in a directory
 
-    # Reference: https://stackoverflow.com/a/3207973
-    from os import listdir
-    from os.path import isfile, join
-    only_files = [f for f in listdir(folder_path) if isfile(join(folder_path, f))]
+    # Reference: https://stackoverflow.com/a/41447012
+    only_files = [str(f) for f in pathlib.Path(folder_path).iterdir() if f.is_file()]
 
     return only_files
+
+
+def get_mid_of_interval(interval_as_str):
+    # Code copied from get_mid_of_interval() in compute_stats.py in hidden-gems repository.
+    interval_as_str_formatted = [s.replace(',', '') for s in interval_as_str.split('..')]
+    lower_bound = float(interval_as_str_formatted[0])
+    upper_bound = float(interval_as_str_formatted[1])
+    mid_value = (lower_bound + upper_bound) / 2
+
+    return mid_value
 
 
 def createAppidDictionary(dict_filename, data_path="data/"):
@@ -77,7 +87,12 @@ def createAppidDictionary(dict_filename, data_path="data/"):
             for appid in added_appids:
                 encountered_appID_so_far.append(appid)
 
-                num_owners = int(data[appid]['owners'])
+                num_owners_value = data[appid]['owners']
+                try:
+                    num_owners = int(num_owners_value)
+                except ValueError:
+                    num_owners = int(get_mid_of_interval(num_owners_value))
+
                 try:
                     price_in_cents = int(data[appid]['price'])
                 except TypeError:
