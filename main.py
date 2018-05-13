@@ -32,10 +32,9 @@ def get_current_data(date_format='%Y%m%d'):
     return data
 
 
-def get_previous_data(date_format='%Y%m%d'):
+def get_previous_data(date_format='%Y%m%d', previous_date='20170726'):
     ## Retrieve previous data
 
-    previous_date = "20170726"
     previous_json_filename = previous_date + get_json_filename_suffixe()
     previous_data = downloadSteamSpyData(previous_json_filename)
 
@@ -233,7 +232,8 @@ def main(no_display_available=False):
     data = get_current_data(date_format)
 
     if only_use_recent_releases:
-        previous_data, delta = get_previous_data(date_format)
+        previous_date = '20170726'
+        previous_data, delta = get_previous_data(date_format, previous_date)
 
         added_data = get_new_releases(data, previous_data)
 
