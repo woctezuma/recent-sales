@@ -207,7 +207,10 @@ def display_sales(x, dict_parameters, title_suffixe, no_display_available):
     plt.ylabel('Probability')
     plt.title(feature_title + " histogram of games" + title_suffixe)
     # plt.text(60, .025, r'$\mu=100,\ \sigma=15$')
-    plt.axis([0, upper_bound, 0, max(n) * 1.01])
+    try:
+        plt.axis([0, upper_bound, 0, max(n) * 1.01])
+    except ValueError:
+        print('Upper bound = {} ; n = {}'.format(upper_bound, n))
 
     # Reference: https://stackoverflow.com/a/24953575
     major_ticks = np.arange(0, 1 + upper_bound, major_tick_value)
@@ -223,7 +226,6 @@ def display_sales(x, dict_parameters, title_suffixe, no_display_available):
 
 
 def main(no_display_available=False):
-
     only_use_recent_releases = True
 
     date_format = '%Y%m%d'
