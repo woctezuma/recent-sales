@@ -204,7 +204,7 @@ def display_sales(x, dict_parameters, title_suffixe):
     fig, ax = plt.subplots()
 
     # the histogram of the data
-    n, bins, patches = ax.hist(x, bin_list, normed=True, facecolor='g', alpha=0.75)
+    n, bins, patches = ax.hist(x, bin_list, density=True, facecolor='g', alpha=0.75)
     print(sum(n))
 
     plt.xlabel(xtitle)
