@@ -3,7 +3,6 @@
 import datetime
 import time
 
-import matplotlib.pyplot as plt
 import numpy as np
 
 from download_json import downloadSteamSpyData
@@ -179,7 +178,7 @@ def get_display_parameters(feature_title):
     return dict_parameters
 
 
-def display_sales(x, dict_parameters, title_suffixe):
+def display_sales(x, dict_parameters, title_suffixe, no_display_available):
     # Read parameters from dictionary
     feature_title = dict_parameters['feature_title']
     xtitle = dict_parameters['xtitle']
@@ -191,6 +190,12 @@ def display_sales(x, dict_parameters, title_suffixe):
     minor_tick_value = dict_parameters['minor_tick_value']
 
     ## Visualize
+
+    if no_display_available:
+        import matplotlib
+        matplotlib.use('Agg')
+
+    import matplotlib.pyplot as plt
 
     fig, ax = plt.subplots()
 
@@ -218,9 +223,6 @@ def display_sales(x, dict_parameters, title_suffixe):
 
 
 def main(no_display_available=False):
-    if no_display_available:
-        import matplotlib
-        matplotlib.use('Agg')
 
     only_use_recent_releases = True
 
@@ -245,7 +247,7 @@ def main(no_display_available=False):
 
     x = prepare_display(database, dict_parameters)
 
-    display_sales(x, dict_parameters, title_suffixe)
+    display_sales(x, dict_parameters, title_suffixe, no_display_available)
 
     return True
 
