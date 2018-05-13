@@ -14,6 +14,8 @@ class TestDownloadJsonMethods(unittest.TestCase):
 class TestListDailyReleasesMethods(unittest.TestCase):
 
     def test_main(self):
+        download_json.main()
+
         self.assertTrue(list_daily_releases.main())
 
 
