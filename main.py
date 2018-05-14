@@ -5,7 +5,7 @@ import time
 
 import numpy as np
 
-from download_json import downloadSteamSpyData
+from download_json import download_steam_spy_data
 from list_daily_releases import get_mid_of_interval
 
 
@@ -15,7 +15,7 @@ def get_json_filename_suffixe():
 
 
 def get_current_data(date_format='%Y%m%d'):
-    ## Download current data
+    # Download current data
 
     # Get current day as yyyymmdd format
     current_date = time.strftime(date_format)
@@ -24,7 +24,7 @@ def get_current_data(date_format='%Y%m%d'):
     json_filename = current_date + get_json_filename_suffixe()
 
     # SteamSpy's data in JSON format
-    data = downloadSteamSpyData(json_filename)
+    data = download_steam_spy_data(json_filename)
 
     num_games = len(data.keys())
     print("[today] #games = %d" % num_games)
@@ -33,10 +33,10 @@ def get_current_data(date_format='%Y%m%d'):
 
 
 def get_previous_data(date_format='%Y%m%d', previous_date='20170726'):
-    ## Retrieve previous data
+    # Retrieve previous data
 
     previous_json_filename = previous_date + get_json_filename_suffixe()
-    previous_data = downloadSteamSpyData(previous_json_filename)
+    previous_data = download_steam_spy_data(previous_json_filename)
 
     num_games = len(previous_data.keys())
     print("[previously] #games = %d" % num_games)
@@ -72,12 +72,17 @@ def get_new_releases(data, previous_data, verbose=False):
 def prepare_display(database, dict_parameters):
     # Read parameters from dictionary
     feature_title = dict_parameters['feature_title']
+    # noinspection PyUnusedLocal
     xtitle = dict_parameters['xtitle']
     feature_name = dict_parameters['feature_name']
+    # noinspection PyUnusedLocal
     upper_bound = dict_parameters['upper_bound']
     transform = dict_parameters['transform']
+    # noinspection PyUnusedLocal
     bin_list = dict_parameters['bin_list']
+    # noinspection PyUnusedLocal
     major_tick_value = dict_parameters['major_tick_value']
+    # noinspection PyUnusedLocal
     minor_tick_value = dict_parameters['minor_tick_value']
 
     x = []
@@ -98,7 +103,7 @@ def prepare_display(database, dict_parameters):
         dico[appid] = formatted_feature_value
 
     print('\nRanking')
-    sorted_appids = sorted(dico, key=lambda x: dico[x], reverse=True)
+    sorted_appids = sorted(dico, key=lambda val: dico[val], reverse=True)
     counter = 1
     for k in sorted_appids[:10]:
         sentence = '{:3}. appID = {:7}\t' + feature_name + ' ={:12.0f}\tname = {}'
@@ -114,7 +119,10 @@ def get_display_parameters(feature_title):
         xtitle = feature_title + " (in USD)"
         feature_name = feature_title.lower()
         upper_bound = 70
-        transform = lambda x: float(x) / 100
+
+        def transform(x):
+            return float(x) / 100
+
         bin_list = [0.5 + i for i in range(0, upper_bound)]
         major_tick_value = 10
         minor_tick_value = 5
@@ -123,7 +131,10 @@ def get_display_parameters(feature_title):
         xtitle = feature_title
         feature_name = "score_rank"
         upper_bound = 100
-        transform = lambda x: float(x)
+
+        def transform(x):
+            return float(x)
+
         bin_list = 20
         major_tick_value = 10
         minor_tick_value = 5
@@ -132,7 +143,10 @@ def get_display_parameters(feature_title):
         xtitle = feature_title
         feature_name = "players_forever"
         upper_bound = 25000
-        transform = lambda x: int(x)
+
+        def transform(x):
+            return int(x)
+
         bin_list = range(0, upper_bound, int(upper_bound / 25))
         major_tick_value = 5000
         minor_tick_value = 1000
@@ -141,7 +155,10 @@ def get_display_parameters(feature_title):
         xtitle = feature_title + " (in USD)"
         feature_name = "owners"
         upper_bound = 100000
-        transform = lambda x: float(x)
+
+        def transform(x):
+            return float(x)
+
         bin_list = range(0, upper_bound, 1000)
         major_tick_value = 5000
         minor_tick_value = 1000
@@ -150,7 +167,10 @@ def get_display_parameters(feature_title):
         xtitle = feature_title + " (in hours)"
         feature_name = "average_forever"
         upper_bound = 100
-        transform = lambda x: float(x) / 60
+
+        def transform(x):
+            return float(x) / 60
+
         bin_list = 100
         major_tick_value = 20
         minor_tick_value = 5
@@ -159,7 +179,10 @@ def get_display_parameters(feature_title):
         xtitle = feature_title + " (in years)"
         feature_name = "average_forever"
         upper_bound = 2000
-        transform = lambda x: float(x) / 60 / 24 / 365.25
+
+        def transform(x):
+            return float(x) / 60 / 24 / 365.25
+
         bin_list = 20000
         major_tick_value = 500
         minor_tick_value = 100
@@ -183,14 +206,16 @@ def display_sales(x, dict_parameters, title_suffixe, no_display_available):
     # Read parameters from dictionary
     feature_title = dict_parameters['feature_title']
     xtitle = dict_parameters['xtitle']
+    # noinspection PyUnusedLocal
     feature_name = dict_parameters['feature_name']
     upper_bound = dict_parameters['upper_bound']
+    # noinspection PyUnusedLocal
     transform = dict_parameters['transform']
     bin_list = dict_parameters['bin_list']
     major_tick_value = dict_parameters['major_tick_value']
     minor_tick_value = dict_parameters['minor_tick_value']
 
-    ## Visualize
+    # Visualize
 
     if no_display_available:
         import matplotlib

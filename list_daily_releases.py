@@ -3,7 +3,7 @@
 import pathlib
 
 
-def loadJsonData(json_filename):
+def load_json_data(json_filename):
     # Load the content of a JSON data file
 
     import json
@@ -30,7 +30,7 @@ def loadJsonData(json_filename):
     return data
 
 
-def listFiles(folder_path):
+def list_files(folder_path):
     # List all the files found in a directory
 
     # Reference: https://stackoverflow.com/a/41447012
@@ -49,7 +49,7 @@ def get_mid_of_interval(interval_as_str):
     return mid_value
 
 
-def createAppidDictionary(dict_filename, data_path="data/"):
+def create_appid_dictionary(dict_filename, data_path="data/"):
     # Create a dictionary: appid -> [ release day, number of owners on release day, price, name of the game ]
 
     try:
@@ -57,17 +57,19 @@ def createAppidDictionary(dict_filename, data_path="data/"):
         with open(dict_filename, 'r', encoding="utf8") as infile:
             lines = infile.readlines()
             # The dictionary is on the second line
+            # noinspection PyPep8Naming
             D = eval(lines[1])
     except FileNotFoundError:
         # Write the appID dictionary if it does not exist yet
 
-        only_files = listFiles(data_path)
+        only_files = list_files(data_path)
 
         # Sort by chronological order (due to file nomenclature)
         sorted_files = sorted(only_files)
 
+        # noinspection PyPep8Naming
         D = dict()
-        encountered_appID_so_far = []
+        encountered_app_id_so_far = []
 
         # Loop over days (one file corresponds to one day)
         for data_filename in sorted_files:
@@ -77,16 +79,16 @@ def createAppidDictionary(dict_filename, data_path="data/"):
             release_day = data_filename.split('_')[0]
 
             # SteamSpy's data in JSON format
-            data = loadJsonData(data_filename)
+            data = load_json_data(data_filename)
 
             # Compute the difference between the two databases
-            added_appids = set(data.keys()) - set(encountered_appID_so_far)
+            added_appids = set(data.keys()) - set(encountered_app_id_so_far)
 
             num_games = len(added_appids)
             print("#games = %d" % num_games)
 
             for appid in added_appids:
-                encountered_appID_so_far.append(appid)
+                encountered_app_id_so_far.append(appid)
 
                 num_owners_value = data[appid]['owners']
                 try:
@@ -105,7 +107,8 @@ def createAppidDictionary(dict_filename, data_path="data/"):
                 D[appid] = [release_day, num_owners, price_in_cents, game_name]
 
         # First line of the text file containing the output dictionary
-        leading_comment = "# Dictionary with key=appid and value=list of release day, #owners, price in cents, game name"
+        leading_comment = "# Dictionary with key=appid and " \
+                          "value=list of release day, #owners, price in cents, game name"
 
         # Save the dictionary to a text file
         with open(dict_filename, 'w', encoding="utf8") as outfile:
@@ -115,7 +118,8 @@ def createAppidDictionary(dict_filename, data_path="data/"):
     return D
 
 
-def filterDictionary(D, start_date_str, end_date_str, date_format="%Y%m%d"):
+# noinspection PyPep8Naming
+def filter_dictionary(D, start_date_str, end_date_str, date_format="%Y%m%d"):
     # Keep every appID which was released in the time window [start_date, end_date] ; remove all the other appIDs
 
     import datetime
@@ -123,6 +127,7 @@ def filterDictionary(D, start_date_str, end_date_str, date_format="%Y%m%d"):
     start_date = datetime.datetime.strptime(start_date_str, date_format)
     end_date = datetime.datetime.strptime(end_date_str, date_format)
 
+    # noinspection PyPep8Naming
     filtered_D = dict()
 
     for appID in D.keys():
@@ -137,10 +142,12 @@ def filterDictionary(D, start_date_str, end_date_str, date_format="%Y%m%d"):
     return filtered_D
 
 
-def reverseDictionary(D):
+# noinspection PyPep8Naming
+def reverse_dictionary(D):
     # Input dictionary: appid -> [ release day, number of owners on release day, price, name of the game ]
     # Output dictionary: release day -> [ list of appID released on that day ]
 
+    # noinspection PyPep8Naming
     reversed_D = dict()
 
     encountered_game_names_so_far = []
@@ -148,7 +155,8 @@ def reverseDictionary(D):
     for appID in D.keys():
         date_str = D[appID][0]
 
-        # Remove duplicate entries (two different appID but actually the same game: "Call of Duty: WWII" is both "476600" and "476620"
+        # Remove duplicate entries (two different appID but actually the same game:
+        # "Call of Duty: WWII" is both "476600" and "476620"
         game_name = D[appID][-1]
 
         if game_name not in encountered_game_names_so_far:
@@ -163,7 +171,7 @@ def reverseDictionary(D):
     return reversed_D
 
 
-def findLaterDay(current_day_str, delta_in_days, date_format="%Y%m%d"):
+def find_later_day(current_day_str, delta_in_days, date_format="%Y%m%d"):
     # Compute the day coresponding to the current day plus a number delta of days
 
     import datetime
@@ -177,7 +185,8 @@ def findLaterDay(current_day_str, delta_in_days, date_format="%Y%m%d"):
     return later_day_str
 
 
-def createAppidLateDictionary(D, delta_in_days=7, data_path="data/"):
+# noinspection PyPep8Naming
+def create_appid_late_dictionary(D, delta_in_days=7):
     # Input dictionary: appid -> [ release day, number of owners on release day, price, name of the game ]
     # Input number of days elapsed before checking the new number of owners
     #
@@ -185,14 +194,14 @@ def createAppidLateDictionary(D, delta_in_days=7, data_path="data/"):
     #                               number of owners after delta days have elapsed,
     #                               price after delta days have elapsed ]
 
-    reversed_D = reverseDictionary(D)
+    reversed_D = reverse_dictionary(D)
 
     late_D = dict()
 
     for day in reversed_D.keys():
-        late_day = findLaterDay(day, delta_in_days)
+        late_day = find_later_day(day, delta_in_days)
 
-        data = loadJsonData(late_day)
+        data = load_json_data(late_day)
 
         for appID in reversed_D[day]:
             try:
@@ -206,19 +215,21 @@ def createAppidLateDictionary(D, delta_in_days=7, data_path="data/"):
     return late_D
 
 
-def computeRevenueDictionary(D, late_D, remove_F2P=False):
+# noinspection PyPep8Naming
+def compute_revenue_dictionary(D, late_D, remove_F2P=False):
     # Given two dictionaries obtained on different days, return a dictionary: appid -> a list of
     # - the number of people who purchased the game between the two snapshots,
     # - the revenue (price times the #units sold),
     # - and then the name of the game.
 
-    original_appID = set(D.keys())
-    late_appID = set(late_D.keys())
-    consistent_appID = original_appID.intersection(late_appID)
+    original_app_id = set(D.keys())
+    late_app_id = set(late_D.keys())
+    consistent_app_id = original_app_id.intersection(late_app_id)
 
+    # noinspection PyPep8Naming
     revenue_D = dict()
 
-    for appID in consistent_appID:
+    for appID in consistent_app_id:
         previous_num_owners = int(D[appID][1])
         new_num_owners = int(late_D[appID][1])
         num_units_sold = new_num_owners - previous_num_owners
@@ -240,7 +251,8 @@ def computeRevenueDictionary(D, late_D, remove_F2P=False):
     return revenue_D
 
 
-def displayRanking(revenue_D, delta_in_days, num_ranks_to_show=15):
+# noinspection PyPep8Naming
+def display_ranking(revenue_D, delta_in_days, num_ranks_to_show=15):
     # Show rankings of most sold and most profitable games
 
     ranking_by_sold_units = sorted(revenue_D.keys(), key=lambda x: revenue_D[x][0], reverse=True)
@@ -248,27 +260,27 @@ def displayRanking(revenue_D, delta_in_days, num_ranks_to_show=15):
 
     print("\nMost sold units over the first " + str(delta_in_days) + " days following their release:")
     for i in range(min(num_ranks_to_show, len(ranking_by_sold_units))):
-        appID = ranking_by_sold_units[i]
+        app_id = ranking_by_sold_units[i]
         try:
             print('{:02}'.format(i + 1)
-                  + ".\tappID: " + appID
-                  + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
-                  + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
-                  + revenue_D[appID][-1])
+                  + ".\tappID: " + app_id
+                  + "\tsold units: " + '{:7}'.format(revenue_D[app_id][0])
+                  + "\trevenue: " + '{:5}'.format(int(revenue_D[app_id][1] / 100 / 1000)) + "k€\t"
+                  + revenue_D[app_id][-1])
         except KeyError:
-            print("Missing data for " + appID)
+            print("Missing data for " + app_id)
 
     print("\nMost profitable games over the first " + str(delta_in_days) + " days following their release:")
     for i in range(min(num_ranks_to_show, len(ranking_by_revenue))):
-        appID = ranking_by_revenue[i]
+        app_id = ranking_by_revenue[i]
         try:
             print('{:02}'.format(i + 1)
-                  + ".\tappID: " + appID
-                  + "\tsold units: " + '{:7}'.format(revenue_D[appID][0])
-                  + "\trevenue: " + '{:5}'.format(int(revenue_D[appID][1] / 100 / 1000)) + "k€\t"
-                  + revenue_D[appID][-1])
+                  + ".\tappID: " + app_id
+                  + "\tsold units: " + '{:7}'.format(revenue_D[app_id][0])
+                  + "\trevenue: " + '{:5}'.format(int(revenue_D[app_id][1] / 100 / 1000)) + "k€\t"
+                  + revenue_D[app_id][-1])
         except KeyError:
-            print("Missing data for " + appID)
+            print("Missing data for " + app_id)
 
 
 def main(chosen_date='20180101'):
@@ -276,7 +288,8 @@ def main(chosen_date='20180101'):
 
     dict_filename = "dict_appid.txt"
 
-    D = createAppidDictionary(dict_filename)
+    # noinspection PyPep8Naming
+    D = create_appid_dictionary(dict_filename)
 
     date_format = "%Y%m%d"
 
@@ -298,15 +311,19 @@ def main(chosen_date='20180101'):
     # Conversion to string
     date_days_ago_str = date_days_ago.strftime(date_format)
 
-    D = filterDictionary(D, date_days_ago_str, chosen_date)
+    # noinspection PyPep8Naming
+    D = filter_dictionary(D, date_days_ago_str, chosen_date)
 
-    late_D = createAppidLateDictionary(D, delta_in_days)
+    # noinspection PyPep8Naming
+    late_D = create_appid_late_dictionary(D, delta_in_days)
 
+    # noinspection PyPep8Naming
     remove_F2P = True
-    revenue_D = computeRevenueDictionary(D, late_D, remove_F2P)
+    # noinspection PyPep8Naming
+    revenue_D = compute_revenue_dictionary(D, late_D, remove_F2P)
 
     num_ranks_to_show = 50
-    displayRanking(revenue_D, delta_in_days, 50)
+    display_ranking(revenue_D, delta_in_days, num_ranks_to_show)
 
     return True
 

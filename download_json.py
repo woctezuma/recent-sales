@@ -5,7 +5,7 @@ import pathlib
 from urllib.request import urlopen
 
 
-def downloadSteamSpyData(json_filename="steamspy.json"):
+def download_steam_spy_data(json_filename="steamspy.json"):
     # Data folder
     data_path = "data/"
     # Reference of the following line: https://stackoverflow.com/a/14364249
@@ -29,10 +29,10 @@ def downloadSteamSpyData(json_filename="steamspy.json"):
             data = json.loads(raw_data.decode(encoding))
             # Make sure the json data is using double quotes instead of single quotes
             # Reference: https://stackoverflow.com/a/8710579/
-            jsonString = json.dumps(data)
+            json_string = json.dumps(data)
             # Cache the json data to a local file
             with open(data_filename, 'w', encoding="utf8") as cache_json_file:
-                print(jsonString, file=cache_json_file)
+                print(json_string, file=cache_json_file)
 
     return data
 
@@ -50,7 +50,8 @@ def main():
     json_filename = current_date + json_filename_suffixe
 
     # SteamSpy's data in JSON format
-    data = downloadSteamSpyData(json_filename)
+    # noinspection PyUnusedLocal
+    data = download_steam_spy_data(json_filename)
 
     return True
 
