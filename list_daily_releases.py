@@ -40,7 +40,7 @@ def list_files(folder_path):
 
 
 def get_mid_of_interval(interval_as_str):
-    # Code copied from get_mid_of_interval() in compute_stats.py in hidden-gems repository.
+    # Code copied from get_mid_of_interval() in create_dict_using_json.py in hidden-gems repository.
     interval_as_str_formatted = [s.replace(',', '') for s in interval_as_str.split('..')]
     lower_bound = float(interval_as_str_formatted[0])
     upper_bound = float(interval_as_str_formatted[1])
@@ -92,9 +92,9 @@ def create_appid_dictionary(dict_filename, data_path="data/"):
 
                 num_owners_value = data[appid]['owners']
                 try:
-                    num_owners = int(num_owners_value)
+                    num_owners = float(num_owners_value)
                 except ValueError:
-                    num_owners = int(get_mid_of_interval(num_owners_value))
+                    num_owners = get_mid_of_interval(num_owners_value)
 
                 try:
                     price_in_cents = int(data[appid]['price'])

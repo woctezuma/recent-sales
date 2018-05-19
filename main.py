@@ -92,7 +92,7 @@ def prepare_display(database, dict_parameters):
         try:
             feature_value = float(feature_value)
         except ValueError:
-            feature_value = float(get_mid_of_interval(feature_value))
+            feature_value = get_mid_of_interval(feature_value)
         formatted_feature_value = transform(feature_value)
         if feature_title == "Revenue":
             formatted_feature_value *= float(database[appid]["price"]) / 100
