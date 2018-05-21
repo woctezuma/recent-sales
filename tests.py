@@ -1,20 +1,15 @@
 import unittest
 
-import download_json
+import steamspypi
+
 import list_daily_releases
 import main
-
-
-class TestDownloadJsonMethods(unittest.TestCase):
-
-    def test_main(self):
-        self.assertTrue(download_json.main())
 
 
 class TestListDailyReleasesMethods(unittest.TestCase):
 
     def test_main(self):
-        download_json.main()
+        steamspypi.load()
 
         self.assertTrue(list_daily_releases.main())
 

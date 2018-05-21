@@ -1,12 +1,22 @@
 # Objective: visualize distributions of games *recently* released
 
 import datetime
+import pathlib
 import time
 
 import numpy as np
+import steamspypi
 
-from download_json import download_steam_spy_data
 from list_daily_releases import get_mid_of_interval
+
+
+def get_data_path():
+    # Data folder
+    data_path = "data/"
+    # Reference of the following line: https://stackoverflow.com/a/14364249
+    pathlib.Path(data_path).mkdir(parents=True, exist_ok=True)
+
+    return data_path
 
 
 def get_json_filename_suffixe():
@@ -24,7 +34,7 @@ def get_current_data(date_format='%Y%m%d'):
     json_filename = current_date + get_json_filename_suffixe()
 
     # SteamSpy's data in JSON format
-    data = download_steam_spy_data(json_filename)
+    data = steamspypi.load(get_data_path() + json_filename)
 
     num_games = len(data.keys())
     print("[today] #games = %d" % num_games)
@@ -36,7 +46,7 @@ def get_previous_data(date_format='%Y%m%d', previous_date='20170726'):
     # Retrieve previous data
 
     previous_json_filename = previous_date + get_json_filename_suffixe()
-    previous_data = download_steam_spy_data(previous_json_filename)
+    previous_data = steamspypi.load(get_data_path() + previous_json_filename)
 
     num_games = len(previous_data.keys())
     print("[previously] #games = %d" % num_games)
