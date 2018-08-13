@@ -105,7 +105,10 @@ def prepare_display(database, dict_parameters):
             feature_value = get_mid_of_interval(feature_value)
         formatted_feature_value = transform(feature_value)
         if feature_title == "Revenue":
-            formatted_feature_value *= float(database[appid]["price"]) / 100
+            try:
+                formatted_feature_value *= float(database[appid]["price"]) / 100
+            except TypeError:
+                formatted_feature_value = -1
         if feature_title == "Cumulated playtime":
             formatted_feature_value *= float(database[appid]["players_forever"])
             formatted_feature_value = int(formatted_feature_value)
