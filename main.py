@@ -200,7 +200,7 @@ def get_display_parameters(feature_title):
         major_tick_value = 500
         minor_tick_value = 100
     else:
-        raise NotImplemented
+        raise NotImplementedError
 
     dict_parameters = dict()
     dict_parameters['feature_title'] = feature_title
