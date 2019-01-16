@@ -237,7 +237,7 @@ def display_sales(x, dict_parameters, title_suffixe, no_display_available):
     _, ax = plt.subplots()
 
     # the histogram of the data
-    n, _, patches = ax.hist(x, bin_list, density=True, facecolor='g', alpha=0.75)
+    n, _, _ = ax.hist(x, bin_list, density=True, facecolor='g', alpha=0.75)
     print('\nIntegral = {}'.format(sum(n)))
 
     plt.xlabel(xtitle)
