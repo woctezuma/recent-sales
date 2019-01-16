@@ -82,18 +82,18 @@ def get_new_releases(data, previous_data, verbose=False):
 def prepare_display(database, dict_parameters):
     # Read parameters from dictionary
     feature_title = dict_parameters['feature_title']
-    # noinspection PyUnusedLocal
-    xtitle = dict_parameters['xtitle']
+
+    _ = dict_parameters['xtitle']
     feature_name = dict_parameters['feature_name']
-    # noinspection PyUnusedLocal
-    upper_bound = dict_parameters['upper_bound']
+
+    _ = dict_parameters['upper_bound']
     transform = dict_parameters['transform']
-    # noinspection PyUnusedLocal
-    bin_list = dict_parameters['bin_list']
-    # noinspection PyUnusedLocal
-    major_tick_value = dict_parameters['major_tick_value']
-    # noinspection PyUnusedLocal
-    minor_tick_value = dict_parameters['minor_tick_value']
+
+    _ = dict_parameters['bin_list']
+
+    _ = dict_parameters['major_tick_value']
+
+    _ = dict_parameters['minor_tick_value']
 
     x = []
     dico = dict()
@@ -219,11 +219,9 @@ def display_sales(x, dict_parameters, title_suffixe, no_display_available):
     # Read parameters from dictionary
     feature_title = dict_parameters['feature_title']
     xtitle = dict_parameters['xtitle']
-    # noinspection PyUnusedLocal
-    feature_name = dict_parameters['feature_name']
+    _ = dict_parameters['feature_name']
     upper_bound = dict_parameters['upper_bound']
-    # noinspection PyUnusedLocal
-    transform = dict_parameters['transform']
+    _ = dict_parameters['transform']
     bin_list = dict_parameters['bin_list']
     major_tick_value = dict_parameters['major_tick_value']
     minor_tick_value = dict_parameters['minor_tick_value']
@@ -236,10 +234,10 @@ def display_sales(x, dict_parameters, title_suffixe, no_display_available):
 
     import matplotlib.pyplot as plt
 
-    fig, ax = plt.subplots()
+    _, ax = plt.subplots()
 
     # the histogram of the data
-    n, bins, patches = ax.hist(x, bin_list, density=True, facecolor='g', alpha=0.75)
+    n, _, patches = ax.hist(x, bin_list, density=True, facecolor='g', alpha=0.75)
     print('\nIntegral = {}'.format(sum(n)))
 
     plt.xlabel(xtitle)
