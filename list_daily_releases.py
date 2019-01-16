@@ -1,5 +1,6 @@
 # Objective: list game releases ; for each game, analyze the sales during the first week after release
 
+import ast
 import pathlib
 
 
@@ -58,7 +59,7 @@ def create_appid_dictionary(dict_filename, data_path="data/"):
             lines = infile.readlines()
             # The dictionary is on the second line
             # noinspection PyPep8Naming
-            D = eval(lines[1])
+            D = ast.literal_eval(lines[1])
     except FileNotFoundError:
         # Write the appID dictionary if it does not exist yet
 
