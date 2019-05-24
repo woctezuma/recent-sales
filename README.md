@@ -33,20 +33,20 @@ steamspypi.load()
 Examples of input data, downloaded from beginning of October to end of December 2017, is available [in this repository](https://github.com/woctezuma/recent-sales-data).
 
 Output includes distribution of:
--   price,
--   user score,
--   number of players,
 -   revenue (product of price and number of players),
+-   price,
+-   number of players,
+-   user score,
 -   average playtime,
 -   cumulated playtime (for all players).
 
-![price](https://i.imgur.com/iNZBAio.png)
+![revenue](https://i.imgur.com/h14Zr9W.png)
 
-![user score](https://i.imgur.com/ikhiOSt.png)
+![price](https://i.imgur.com/iNZBAio.png)
 
 ![number of players](https://i.imgur.com/L7Wme1D.png)
 
-![revenue](https://i.imgur.com/h14Zr9W.png)
+![user score](https://i.imgur.com/ikhiOSt.png)
 
 ![average playtime](https://i.imgur.com/NYTMqGH.png)
 
