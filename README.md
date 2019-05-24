@@ -88,3 +88,7 @@ NB: This does not take into account F2P games, as the revenue is based on the ga
 15. Startup Company
  
 NB: Games with "Enhanced Edition" or "Lightspeed Edition" are likely remastered versions of older games, so they might not be the most profitable in practice. Indeed, their userbase likely consists of owners of the older game, which have been freely upgraded to the new game and artificially inflates the revenue computed on this page.
+
+## References
+
+-   Steam Blog post: ["Top Steam Releases of April 2019"](https://steamcommunity.com/games/593110/announcements/detail/2565275416677184326)
