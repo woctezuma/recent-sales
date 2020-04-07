@@ -88,6 +88,8 @@ NB: Games with "Enhanced Edition" or "Lightspeed Edition" are likely remastered 
 ## References
 
 -   Steam Blog post: ["Top Steam Releases of April 2019"](https://steamcommunity.com/games/593110/announcements/detail/2565275416677184326)
+-   Steam Blog post: ["Data Deep Dive: How are new releases on Steam performing?"](https://steamcommunity.com/groups/steamworks/announcements/detail/2117195691992645419)
+-   Steam Research appendix: ["Research notes: What we studied and why"](https://partner.steamgames.com/doc/blog/2020/new_releases)
 
 <!-- Definitions -->
 
