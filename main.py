@@ -230,6 +230,7 @@ def display_sales(x, dict_parameters, title_suffixe, no_display_available):
 
     if no_display_available:
         import matplotlib
+
         matplotlib.use('Agg')
 
     import matplotlib.pyplot as plt

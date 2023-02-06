@@ -42,7 +42,9 @@ def list_files(folder_path):
 
 def get_mid_of_interval(interval_as_str):
     # Code copied from get_mid_of_interval() in create_dict_using_json.py in hidden-gems repository.
-    interval_as_str_formatted = [s.replace(',', '') for s in interval_as_str.split('..')]
+    interval_as_str_formatted = [
+        s.replace(',', '') for s in interval_as_str.split('..')
+    ]
     lower_bound = float(interval_as_str_formatted[0])
     upper_bound = float(interval_as_str_formatted[1])
     mid_value = (lower_bound + upper_bound) / 2
@@ -108,8 +110,10 @@ def create_appid_dictionary(dict_filename, data_path="data/"):
                 D[appid] = [release_day, num_owners, price_in_cents, game_name]
 
         # First line of the text file containing the output dictionary
-        leading_comment = "# Dictionary with key=appid and " \
-                          "value=list of release day, #owners, price in cents, game name"
+        leading_comment = (
+            "# Dictionary with key=appid and "
+            "value=list of release day, #owners, price in cents, game name"
+        )
 
         # Save the dictionary to a text file
         with open(dict_filename, 'w', encoding="utf8") as outfile:
@@ -256,30 +260,58 @@ def compute_revenue_dictionary(D, late_D, remove_F2P=False):
 def display_ranking(revenue_D, delta_in_days, num_ranks_to_show=15):
     # Show rankings of most sold and most profitable games
 
-    ranking_by_sold_units = sorted(revenue_D.keys(), key=lambda x: revenue_D[x][0], reverse=True)
-    ranking_by_revenue = sorted(revenue_D.keys(), key=lambda x: revenue_D[x][1], reverse=True)
+    ranking_by_sold_units = sorted(
+        revenue_D.keys(),
+        key=lambda x: revenue_D[x][0],
+        reverse=True,
+    )
+    ranking_by_revenue = sorted(
+        revenue_D.keys(),
+        key=lambda x: revenue_D[x][1],
+        reverse=True,
+    )
 
-    print("\nMost sold units over the first " + str(delta_in_days) + " days following their release:")
+    print(
+        "\nMost sold units over the first "
+        + str(delta_in_days)
+        + " days following their release:",
+    )
     for i in range(min(num_ranks_to_show, len(ranking_by_sold_units))):
         app_id = ranking_by_sold_units[i]
         try:
-            print('{:02}'.format(i + 1)
-                  + ".\tappID: " + app_id
-                  + "\tsold units: " + '{:7}'.format(revenue_D[app_id][0])
-                  + "\trevenue: " + '{:5}'.format(int(revenue_D[app_id][1] / 100 / 1000)) + "k€\t"
-                  + revenue_D[app_id][-1])
+            print(
+                '{:02}'.format(i + 1)
+                + ".\tappID: "
+                + app_id
+                + "\tsold units: "
+                + '{:7}'.format(revenue_D[app_id][0])
+                + "\trevenue: "
+                + '{:5}'.format(int(revenue_D[app_id][1] / 100 / 1000))
+                + "k€\t"
+                + revenue_D[app_id][-1],
+            )
         except KeyError:
             print("Missing data for " + app_id)
 
-    print("\nMost profitable games over the first " + str(delta_in_days) + " days following their release:")
+    print(
+        "\nMost profitable games over the first "
+        + str(delta_in_days)
+        + " days following their release:",
+    )
     for i in range(min(num_ranks_to_show, len(ranking_by_revenue))):
         app_id = ranking_by_revenue[i]
         try:
-            print('{:02}'.format(i + 1)
-                  + ".\tappID: " + app_id
-                  + "\tsold units: " + '{:7}'.format(revenue_D[app_id][0])
-                  + "\trevenue: " + '{:5}'.format(int(revenue_D[app_id][1] / 100 / 1000)) + "k€\t"
-                  + revenue_D[app_id][-1])
+            print(
+                '{:02}'.format(i + 1)
+                + ".\tappID: "
+                + app_id
+                + "\tsold units: "
+                + '{:7}'.format(revenue_D[app_id][0])
+                + "\trevenue: "
+                + '{:5}'.format(int(revenue_D[app_id][1] / 100 / 1000))
+                + "k€\t"
+                + revenue_D[app_id][-1],
+            )
         except KeyError:
             print("Missing data for " + app_id)
 
@@ -300,12 +332,17 @@ def main(chosen_date='20180101'):
     # We will compute revenue earned during the first 10 days of release
     delta_in_days = 7
 
-    date_days_ago = datetime.datetime.strptime(chosen_date, date_format) - datetime.timedelta(
-        time_window_duration + delta_in_days)
+    date_days_ago = datetime.datetime.strptime(
+        chosen_date,
+        date_format,
+    ) - datetime.timedelta(time_window_duration + delta_in_days)
     # Any date prior to the following date is not reliable: games released in August will appear to be released
     # on 20170912 because I started to regularly sample from SteamSpy only then.
     hard_date_threshold_str = '20170914'
-    hard_date_threshold = datetime.datetime.strptime(hard_date_threshold_str, date_format)
+    hard_date_threshold = datetime.datetime.strptime(
+        hard_date_threshold_str,
+        date_format,
+    )
     check_delta = hard_date_threshold - date_days_ago
     if check_delta.days > 0:
         date_days_ago = hard_date_threshold

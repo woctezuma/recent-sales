@@ -7,7 +7,6 @@ import main
 
 
 class TestListDailyReleasesMethods(unittest.TestCase):
-
     def test_main(self):
         steamspypi.load()
 
@@ -15,7 +14,6 @@ class TestListDailyReleasesMethods(unittest.TestCase):
 
 
 class TestMainMethods(unittest.TestCase):
-
     def test_main(self):
         self.assertTrue(main.main(no_display_available=True))
 
