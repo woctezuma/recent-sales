@@ -91,8 +91,8 @@ NB: Games with "Enhanced Edition" or "Lightspeed Edition" are likely remastered 
 
 <!-- Definitions -->
 
-[build]: <https://travis-ci.org/woctezuma/recent-sales>
-[build-image]: <https://travis-ci.org/woctezuma/recent-sales.svg?branch=master>
+[build]: <https://github.com/woctezuma/recent-sales/actions>
+[build-image]: <https://github.com/woctezuma/recent-sales/workflows/Python package/badge.svg?branch=master>
 
 [pyup]: <https://pyup.io/repos/github/woctezuma/recent-sales/>
 [dependency-image]: <https://pyup.io/repos/github/woctezuma/recent-sales/shield.svg>
