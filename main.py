@@ -67,7 +67,7 @@ def get_new_releases(data, previous_data, verbose=False):
 
     added_appids = set(data.keys()) - set(previous_data.keys())
 
-    added_data = dict()
+    added_data = {}
     for appid in added_appids:
         added_data[appid] = data[appid]
     if verbose:
@@ -96,8 +96,8 @@ def prepare_display(database, dict_parameters):
     _ = dict_parameters['minor_tick_value']
 
     x = []
-    dico = dict()
-    for appid in database.keys():
+    dico = {}
+    for appid in database:
         feature_value = database[appid][feature_name]
         try:
             feature_value = float(feature_value)
@@ -202,7 +202,7 @@ def get_display_parameters(feature_title):
     else:
         raise NotImplementedError
 
-    dict_parameters = dict()
+    dict_parameters = {}
     dict_parameters['feature_title'] = feature_title
     dict_parameters['xtitle'] = xtitle
     dict_parameters['feature_name'] = feature_name
@@ -239,7 +239,7 @@ def display_sales(x, dict_parameters, title_suffixe, no_display_available):
 
     # the histogram of the data
     n, _, _ = ax.hist(x, bin_list, density=True, facecolor='g', alpha=0.75)
-    print('\nIntegral = {}'.format(sum(n)))
+    print(f'\nIntegral = {sum(n)}')
 
     plt.xlabel(xtitle)
     plt.ylabel('Probability')
@@ -248,7 +248,7 @@ def display_sales(x, dict_parameters, title_suffixe, no_display_available):
     try:
         plt.axis([0, upper_bound, 0, max(n) * 1.01])
     except ValueError:
-        print('Upper bound = {} ; n = {}'.format(upper_bound, n))
+        print(f'Upper bound = {upper_bound} ; n = {n}')
 
     # Reference: https://stackoverflow.com/a/24953575
     major_ticks = np.arange(0, 1 + upper_bound, major_tick_value)

@@ -22,11 +22,11 @@ def load_json_data(json_filename):
     data_filename = data_path + json_filename
 
     try:
-        with open(data_filename, 'r', encoding="utf8") as in_json_file:
+        with open(data_filename, encoding="utf8") as in_json_file:
             data = json.load(in_json_file)
     except FileNotFoundError:
         print("File not found:\t" + data_filename)
-        data = dict()
+        data = {}
 
     return data
 
@@ -57,7 +57,7 @@ def create_appid_dictionary(dict_filename, data_path="data/"):
 
     try:
         # Load the appID dictionary
-        with open(dict_filename, 'r', encoding="utf8") as infile:
+        with open(dict_filename, encoding="utf8") as infile:
             lines = infile.readlines()
             # The dictionary is on the second line
             # noinspection PyPep8Naming
@@ -71,7 +71,7 @@ def create_appid_dictionary(dict_filename, data_path="data/"):
         sorted_files = sorted(only_files)
 
         # noinspection PyPep8Naming
-        D = dict()
+        D = {}
         encountered_app_id_so_far = []
 
         # Loop over days (one file corresponds to one day)
@@ -133,9 +133,9 @@ def filter_dictionary(D, start_date_str, end_date_str, date_format="%Y%m%d"):
     end_date = datetime.datetime.strptime(end_date_str, date_format)
 
     # noinspection PyPep8Naming
-    filtered_D = dict()
+    filtered_D = {}
 
-    for appID in D.keys():
+    for appID in D:
         date_str = D[appID][0]
         date = datetime.datetime.strptime(date_str, date_format)
 
@@ -153,11 +153,11 @@ def reverse_dictionary(D):
     # Output dictionary: release day -> [ list of appID released on that day ]
 
     # noinspection PyPep8Naming
-    reversed_D = dict()
+    reversed_D = {}
 
     encountered_game_names_so_far = []
 
-    for appID in D.keys():
+    for appID in D:
         date_str = D[appID][0]
 
         # Remove duplicate entries (two different appID but actually the same game:
@@ -201,9 +201,9 @@ def create_appid_late_dictionary(D, delta_in_days=7):
 
     reversed_D = reverse_dictionary(D)
 
-    late_D = dict()
+    late_D = {}
 
-    for day in reversed_D.keys():
+    for day in reversed_D:
         late_day = find_later_day(day, delta_in_days)
 
         data = load_json_data(late_day)
@@ -232,7 +232,7 @@ def compute_revenue_dictionary(D, late_D, remove_F2P=False):
     consistent_app_id = original_app_id.intersection(late_app_id)
 
     # noinspection PyPep8Naming
-    revenue_D = dict()
+    revenue_D = {}
 
     for appID in consistent_app_id:
         previous_num_owners = int(D[appID][1])
@@ -280,13 +280,13 @@ def display_ranking(revenue_D, delta_in_days, num_ranks_to_show=15):
         app_id = ranking_by_sold_units[i]
         try:
             print(
-                '{:02}'.format(i + 1)
+                f'{i + 1:02}'
                 + ".\tappID: "
                 + app_id
                 + "\tsold units: "
-                + '{:7}'.format(revenue_D[app_id][0])
+                + f'{revenue_D[app_id][0]:7}'
                 + "\trevenue: "
-                + '{:5}'.format(int(revenue_D[app_id][1] / 100 / 1000))
+                + f'{int(revenue_D[app_id][1] / 100 / 1000):5}'
                 + "k€\t"
                 + revenue_D[app_id][-1],
             )
@@ -302,13 +302,13 @@ def display_ranking(revenue_D, delta_in_days, num_ranks_to_show=15):
         app_id = ranking_by_revenue[i]
         try:
             print(
-                '{:02}'.format(i + 1)
+                f'{i + 1:02}'
                 + ".\tappID: "
                 + app_id
                 + "\tsold units: "
-                + '{:7}'.format(revenue_D[app_id][0])
+                + f'{revenue_D[app_id][0]:7}'
                 + "\trevenue: "
-                + '{:5}'.format(int(revenue_D[app_id][1] / 100 / 1000))
+                + f'{int(revenue_D[app_id][1] / 100 / 1000):5}'
                 + "k€\t"
                 + revenue_D[app_id][-1],
             )
